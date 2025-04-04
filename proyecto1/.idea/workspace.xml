@@ -4,7 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="86ad8192-5132-4a58-9e5c-2ca8dfe4db38" name="Changes" comment="" />
+    <list default="true" id="86ad8192-5132-4a58-9e5c-2ca8dfe4db38" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/www/parte2/index.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/www/parte2/index.view.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/www/pt3ConTailwind/functions.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/www/pt3ConTailwind/index.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/www/pt3ConTailwind/projects.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/www/pt3ConTailwind/team.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/www/pt3ConTailwind/views/index.view.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/www/pt3ConTailwind/views/parts/footer.view.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/www/pt3ConTailwind/views/parts/head.view.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/www/pt3ConTailwind/views/parts/header.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/www/pt3ConTailwind/views/parts/nav.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/www/pt3ConTailwind/views/projects.view.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/www/pt3ConTailwind/views/team.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apuntes.md" beforeDir="false" afterPath="$PROJECT_DIR$/../apuntes.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -20,12 +36,15 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 1
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
   <component name="ProjectId" id="2vDvXWhnHooAodIXYn0bjhwQO4U" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -36,16 +55,20 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "C:/Users/jorge/Documents/curso_php_laracast_2025/proyecto1",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "Errors",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\jorge\Documents\curso_php_laracast_2025\proyecto1\www\pt3ConTailwind\views" />
       <recent name="C:\Users\jorge\Documents\curso php\proyecto1" />
       <recent name="C:\Users\jorge\Documents\curso php\proyecto1\src" />
     </key>
@@ -59,6 +82,7 @@
       <option name="presentableId" value="Default" />
       <updated>1743692498237</updated>
       <workItem from="1743692499222" duration="7926000" />
+      <workItem from="1743780752122" duration="6226000" />
     </task>
     <servers />
   </component>

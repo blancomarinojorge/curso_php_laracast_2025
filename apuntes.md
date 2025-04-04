@@ -1,3 +1,21 @@
+# Depuracion
+Para imprimir unha variable usamos `var_dump()`, e para parar a execución do codigo nese punto `die()`.
+
+Asi que para que quede bonito, podemos facer unha funcion que xunte todo esto e o formatee con `<pre>`
+
+````php
+//dump and die
+function dd($variable){
+    echo "<pre>";
+    var_dump($variable);
+    echo "</pre>";
+    die();
+}
+````
+
+# Variables globales
+
+
 # Variables
 ````php
 <?php
