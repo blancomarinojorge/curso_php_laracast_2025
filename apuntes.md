@@ -13,8 +13,60 @@ function dd($variable){
 }
 ````
 
-# Variables globales
+# Require
+Para incluir archivos dentro de outros usase `require`:
+````php
+case "/dashboard":
+        require "controllers/dashboard.php";
+        break;
+default:
+    require "controllers/notFound.php";
+````
+⚠️PERO cuidado, porque o require é interpretado relativamente dende o ficheiro
+que inicia o request, por ejemplo se o request inicia en index.php, ainda que
+fagamos un require en notFound.php a ruta relativa vai ser a de index.php.
 
+Para facer que os require sean relativos aos archivos que
+os usan e non ao archivo que inicia a REQUEST, usaremos `__DIR__`, que basicamente devolve a ruta do archivo actual.
+
+## Ejemplos
+Estructura de directorios dos ejemplos:
+* index.php
+* controllers
+    * notFound.php
+* views
+    * notFound.view.php
+### Ejemplo que non vai funcionar ❌:
+`index.php`
+````php
+require "controllers/notFound.php";
+````
+`notFound.php`
+````php
+require "../views/notFound.view.php";
+````
+Esto non vai funcionar, xa que o require dende `notFound.php`
+vai ser interpretada como se a chamara `index.php`.
+
+chati: PHP resolves relative paths based on the file that initiates the request, not the file in which the require is written.
+
+So, ../views/notFound.view.php is interpreted relative to index.php, not notFound.php.
+
+### Ejemplo CORRECTO ✔️
+`index.php`
+````php
+require "controllers/notFound.php";
+````
+`notFound.php`
+````php
+require __DIR__ . "/../views/notFound.view.php";
+````
+Esto vai funcionar, xa que usamos `__DIR__`, polo que a ruta
+será relativa ao ficheiro que esta facendo o require, `notFound.php` neste caso
+, e non a `index.php`
+
+# Variables globales
+Completar con $_SERVER, $_POST, $_GET, $_FILES....
 
 # Variables
 ````php

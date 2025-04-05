@@ -8,9 +8,9 @@
                 <div class="hidden md:block">
                     <div class="ml-10 flex items-baseline space-x-4">
                         <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-                        <a href="/pt3ConTailwind/index.php" class="<?php echo isUrl("/") ? "bg-gray-900" : "" ?> rounded-md px-3 py-2 text-sm font-medium text-white" aria-current="page">Dashboard</a>
-                        <a href="/pt3ConTailwind/team.php" class="<?php echo isUrl("/") ? "bg-gray-900" : "" ?> rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Team</a>
-                        <a href="/pt3ConTailwind/projects.php" class="<?php echo isUrl("/") ? "bg-gray-900" : "" ?> rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Projects</a>
+                        <a href="/pt3ConTailwind/controllers/dashboard.php" class="<?php echo isUrl("/pt3ConTailwind/controllers/dashboard.php") ? "bg-gray-900" : "" ?> rounded-md px-3 py-2 text-sm font-medium text-white" aria-current="page">Dashboard</a>
+                        <a href="/pt3ConTailwind/controllers/team.php" class="<?php echo isUrl("/pt3ConTailwind/controllers/team.php") ? "bg-gray-900" : "" ?> rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Team</a>
+                        <a href="/pt3ConTailwind/controllers/projects.php" class="<?php echo isUrl("/pt3ConTailwind/controllers/projects.php") ? "bg-gray-900" : "" ?> rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Projects</a>
                         <a href="#" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Calendar</a>
                         <a href="#" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Reports</a>
                     </div>
