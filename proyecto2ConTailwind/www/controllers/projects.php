@@ -1,8 +1,5 @@
 <?php
 
-require "../functions.php";
-
-
 $header = "Projects";
 
-require "../views/projects.view.php";
+require __DIR__ . "/../views/projects.view.php";

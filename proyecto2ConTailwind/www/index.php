@@ -12,6 +12,12 @@ switch ($uri){
     case "/dashboard":
         require "controllers/dashboard.php";
         break;
+    case "/team":
+        require "controllers/team.php";
+        break;
+    case "/projects":
+        require "controllers/projects.php";
+        break;
     default:
         require "controllers/notFound.php";
 }
