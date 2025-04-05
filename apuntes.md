@@ -1,3 +1,13 @@
+# Rutas e apache
+De normal, apache busca archivos(`index.php`) ou directorios(`/www/views`) e se non existen
+devolve un error.
+
+Se queremos por exemplo facer routing en php, hai que configurar apache para que
+se unha ruta non é un archivo nin directorio, redireccione siempre a `index.php`,
+que é onde teremos o router.
+
+Configurandoo xa poderiamos usar rutas como `http://localhost:8080/dashboard`
+
 # Depuracion
 Para imprimir unha variable usamos `var_dump()`, e para parar a execución do codigo nese punto `die()`.
 
@@ -64,6 +74,8 @@ require __DIR__ . "/../views/notFound.view.php";
 Esto vai funcionar, xa que usamos `__DIR__`, polo que a ruta
 será relativa ao ficheiro que esta facendo o require, `notFound.php` neste caso
 , e non a `index.php`
+
+---
 
 # Variables globales
 Completar con $_SERVER, $_POST, $_GET, $_FILES....
