@@ -8,6 +8,15 @@ que é onde teremos o router.
 
 Configurandoo xa poderiamos usar rutas como `http://localhost:8080/dashboard`
 
+Para pillar solo a url, sin parametros como `?name=jorge` usase `parse_url`:
+````php
+$uri = $_SERVER["REQUEST_URI"] //pillamos a url da request enteira
+$urlSeparada = parse_url($uri); //ahora teremos a url separada dos parametros
+
+$urlSinParametros = $urlSeparada["path"]
+$parametros = $urlSeparada["query"]
+````
+
 # Depuracion
 Para imprimir unha variable usamos `var_dump()`, e para parar a execución do codigo nese punto `die()`.
 
@@ -75,8 +84,30 @@ Esto vai funcionar, xa que usamos `__DIR__`, polo que a ruta
 será relativa ao ficheiro que esta facendo o require, `notFound.php` neste caso
 , e non a `index.php`
 
----
+## Require para obter variables
+Tamen se pode usar require para por ejemplo, inicializar unha variable, se o arquivo
+que incluimos fai un `return`
 
+Por exemplo, podemos inicializar unha variable de configuración:
+
+`config.php`
+````php
+<?php
+
+return $config = [
+    "dbType" => "mysql",
+    "host" => "localhost",
+    "port" => 3306,
+    "dbName" => "proyecto2",
+    "charset" => "utf8mb4"
+];
+````
+`index.php`
+````php
+$config = require "config.php";
+````
+
+---
 # Variables globales
 Completar con $_SERVER, $_POST, $_GET, $_FILES....
 
