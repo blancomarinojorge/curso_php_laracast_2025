@@ -11,6 +11,7 @@
                         <a href="/dashboard" class="<?php echo isUrl("/dashboard") ? "bg-gray-900" : "" ?> rounded-md px-3 py-2 text-sm font-medium text-white" aria-current="page">Dashboard</a>
                         <a href="/team" class="<?php echo isUrl("/team") ? "bg-gray-900" : "" ?> rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Team</a>
                         <a href="/projects" class="<?php echo isUrl("/projects") ? "bg-gray-900" : "" ?> rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Projects</a>
+                        <a href="/notes" class="<?php echo isUrl("/notes") ? "bg-gray-900" : "" ?> rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Notes</a>
                         <a href="#" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Calendar</a>
                         <a href="#" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Reports</a>
                     </div>

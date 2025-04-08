@@ -5,14 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ac708e21-fe23-4b70-8673-74843cebf116" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/www/config.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/www/routing.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../apuntes.md" beforeDir="false" afterPath="$PROJECT_DIR$/../apuntes.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/www/Database2.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/www/Response.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/www/controllers/createNote.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/www/controllers/note.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/www/controllers/notes.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/www/dbConfig2.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/www/routes.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/www/views/createNote.view.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/www/views/errorPages/400.view.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/www/views/errorPages/403.view.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/www/views/errorPages/404.view.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/www/views/note.view.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/www/views/notes.view.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/controllers/notFound.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/controllers/404.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/Database.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/Database.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/controllers/404.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/www/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/views/notFound.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/views/404.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/routing.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/routing.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/views/404.view.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/views/parts/nav.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/views/parts/nav.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,6 +62,8 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/jorge/Documents/curso_php_laracast_2025/proyecto2ConTailwind/www/controllers",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -58,6 +72,17 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\jorge\Documents\curso_php_laracast_2025\proyecto2ConTailwind\www\controllers" />
+      <recent name="C:\Users\jorge\Documents\curso_php_laracast_2025\proyecto2ConTailwind\www\views" />
+      <recent name="C:\Users\jorge\Documents\curso_php_laracast_2025\proyecto2ConTailwind\www\views\errorPages" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\jorge\Documents\curso_php_laracast_2025\proyecto2ConTailwind\www\views\errorPages" />
+      <recent name="C:\Users\jorge\Documents\curso_php_laracast_2025\proyecto2ConTailwind\www" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -67,7 +92,8 @@
       <option name="presentableId" value="Default" />
       <updated>1743850318743</updated>
       <workItem from="1743850320938" duration="14000" />
-      <workItem from="1743850338980" duration="10891000" />
+      <workItem from="1743850338980" duration="11483000" />
+      <workItem from="1744125169570" duration="9209000" />
     </task>
     <servers />
   </component>

@@ -15,9 +15,9 @@ class Database{
         );
     }
 
-    public function query($query){
+    public function query($query, $params = []){
         $preparedQueryStatement = $this->pdo->prepare($query);
-        $preparedQueryStatement->execute();
+        $preparedQueryStatement->execute($params);
 
         return $preparedQueryStatement;
     }

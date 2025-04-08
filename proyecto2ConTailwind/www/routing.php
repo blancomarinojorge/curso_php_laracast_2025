@@ -1,6 +1,7 @@
 <?php
 
 require_once "functions.php";
+require "routes.php";
 
 //para que funcione, hai que poñer o index na raiz do proyecto
 //xa que php ao poñer /dashboard por ejemplo, ao non encontrar ese archivo
@@ -9,16 +10,9 @@ require_once "functions.php";
 $requestUri = $_SERVER["REQUEST_URI"];
 $uri = parse_url($requestUri)["path"];
 
-$routes = [
-    "/" => "controllers/dashboard.php",
-    "/dashboard" => "controllers/dashboard.php",
-    "/team" => "controllers/team.php",
-    "/projects" => "controllers/projects.php"
-];
-
 function abort($statusCode = 404){
     http_response_code($statusCode);
-    require __DIR__."/controllers/{$statusCode}.php";
+    require __DIR__."/views/errorPages/{$statusCode}.view.php";
     die();
 }
 
