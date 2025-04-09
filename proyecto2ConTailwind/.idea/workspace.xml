@@ -5,26 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ac708e21-fe23-4b70-8673-74843cebf116" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/www/Database2.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/www/Response.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/www/controllers/createNote.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/www/controllers/note.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/www/controllers/notes.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/www/dbConfig2.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/www/routes.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/www/views/createNote.view.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/www/views/errorPages/400.view.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/www/views/errorPages/403.view.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/www/views/errorPages/404.view.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/www/views/note.view.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/www/views/notes.view.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/www/Validator.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/Database.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/Database.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/controllers/404.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/routing.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/routing.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/views/404.view.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/views/parts/nav.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/views/parts/nav.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/controllers/createNote.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/controllers/createNote.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/routes.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/routes.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/views/createNote.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/views/createNote.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/views/errorPages/400.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/views/errorPages/400.view.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,22 +43,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/jorge/Documents/curso_php_laracast_2025/proyecto2ConTailwind/www/controllers",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/jorge/Documents/curso_php_laracast_2025/proyecto2ConTailwind/www/controllers&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\jorge\Documents\curso_php_laracast_2025\proyecto2ConTailwind\www\controllers" />
@@ -93,7 +80,8 @@
       <updated>1743850318743</updated>
       <workItem from="1743850320938" duration="14000" />
       <workItem from="1743850338980" duration="11483000" />
-      <workItem from="1744125169570" duration="9209000" />
+      <workItem from="1744125169570" duration="9358000" />
+      <workItem from="1744212865595" duration="4914000" />
     </task>
     <servers />
   </component>
