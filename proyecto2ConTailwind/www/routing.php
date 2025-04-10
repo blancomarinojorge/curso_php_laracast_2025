@@ -12,7 +12,7 @@ $uri = parse_url($requestUri)["path"];
 
 function abort($statusCode = 404){
     http_response_code($statusCode);
-    require __DIR__."/views/errorPages/{$statusCode}.view.php";
+    require "views/errorPages/{$statusCode}.view.php";
     die();
 }
 

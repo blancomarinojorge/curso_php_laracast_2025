@@ -1,6 +1,6 @@
 <?php
 
-require __DIR__."/../Database2.php";
+require "Database2.php";
 
 $header = "As tuas notas";
 
@@ -11,10 +11,10 @@ if (isset($_GET["id"])){
     abort(400);
 }
 
-$dbOptions = require __DIR__."/../dbConfig2.php";
+$dbOptions = require "dbConfig2.php";
 
 $db = new Database2("root", "rootpassword", $dbOptions["database"]);
 
 $notes = $db->query("select * from notes where user_id = ?",[$id])->fetchAll();
 
-require __DIR__."/../views/notes.view.php";
+require "views/notes/index.view.php";

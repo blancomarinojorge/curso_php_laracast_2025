@@ -5,13 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ac708e21-fe23-4b70-8673-74843cebf116" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/www/Validator.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apuntes.md" beforeDir="false" afterPath="$PROJECT_DIR$/../apuntes.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/controllers/createNote.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/controllers/createNote.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/controllers/createNote.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/controllers/notes/create.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/controllers/note.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/controllers/notes/show.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/controllers/notes.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/controllers/notes/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/index.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/www/routes.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/routes.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/views/createNote.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/views/createNote.view.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/views/errorPages/400.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/views/errorPages/400.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/routing.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/routing.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/views/createNote.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/views/notes/create.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/views/note.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/views/notes/show.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/views/notes.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/views/notes/index.view.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,6 +70,8 @@
       <recent name="C:\Users\jorge\Documents\curso_php_laracast_2025\proyecto2ConTailwind\www\views\errorPages" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\jorge\Documents\curso_php_laracast_2025\proyecto2ConTailwind\www\views\notes" />
+      <recent name="C:\Users\jorge\Documents\curso_php_laracast_2025\proyecto2ConTailwind\www\controllers\notes" />
       <recent name="C:\Users\jorge\Documents\curso_php_laracast_2025\proyecto2ConTailwind\www\views\errorPages" />
       <recent name="C:\Users\jorge\Documents\curso_php_laracast_2025\proyecto2ConTailwind\www" />
     </key>
@@ -81,7 +87,8 @@
       <workItem from="1743850320938" duration="14000" />
       <workItem from="1743850338980" duration="11483000" />
       <workItem from="1744125169570" duration="9358000" />
-      <workItem from="1744212865595" duration="4914000" />
+      <workItem from="1744212865595" duration="5217000" />
+      <workItem from="1744299250629" duration="4872000" />
     </task>
     <servers />
   </component>

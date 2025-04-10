@@ -1,7 +1,7 @@
 <?php
 
-require __DIR__."/../Database2.php";
-require __DIR__."/../Response.php";
+require "Database2.php";
+require "Response.php";
 
 
 $id = null;
@@ -13,7 +13,7 @@ if (isset($_GET["id"])){
 
 $header = "Nota ".$id;
 
-$dbOptions = require __DIR__."/../dbConfig2.php";
+$dbOptions = require "dbConfig2.php";
 
 $db = new Database2("root", "rootpassword", $dbOptions["database"]);
 
@@ -23,4 +23,4 @@ if ($note["user_id"] != 2){
     abort(Response::UNAUTHORIZED);
 }
 
-require __DIR__."/../views/note.view.php";
+require "views/notes/show.view.php";

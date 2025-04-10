@@ -45,8 +45,11 @@ default:
 que inicia o request, por ejemplo se o request inicia en index.php, ainda que
 fagamos un require en notFound.php a ruta relativa vai ser a de index.php.
 
-Para facer que os require sean relativos aos archivos que
-os usan e non ao archivo que inicia a REQUEST, usaremos `__DIR__`, que basicamente devolve a ruta do archivo actual.
+Para usar correctamente dir poden usarse duas maneiras:
+* Como todas as request unha vez teñamos o router van ir dirixidas ao index, todos os require
+van ser interpretados dende o directorio do index.php, así que simplemente poñemos todas as rutas
+como se foran dende o `index.php`
+* usaremos `__DIR__`, que basicamente devolve a ruta do archivo actual.
 
 ## Ejemplos
 Estructura de directorios dos ejemplos:
@@ -71,7 +74,16 @@ chati: PHP resolves relative paths based on the file that initiates the request,
 
 So, ../views/notFound.view.php is interpreted relative to index.php, not notFound.php.
 
-### Ejemplo CORRECTO ✔️
+### Ejemplo CORRECTO con rutas dende o index.php ✔️
+`index.php`
+````php
+require "controllers/notFound.php";
+````
+`notFound.php`
+````php
+require "views/notFound.view.php";
+````
+### Ejemplo CORRECTO usando __DIR__ ✔️
 `index.php`
 ````php
 require "controllers/notFound.php";

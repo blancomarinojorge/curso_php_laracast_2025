@@ -1,6 +1,6 @@
-<?php require "parts/head.view.php"; ?>
-<?php require "parts/nav.php"; ?>
-<?php require "parts/header.php"; ?>
+<?php require "views/parts/head.view.php"; ?>
+<?php require "views/parts/nav.php"; ?>
+<?php require "views/parts/header.php"; ?>
     <main>
         <form method="post" action="/createNote" style="display: flex;flex-direction: column;padding: 40px;gap: 10px">
             <textarea name="noteBody">
@@ -14,4 +14,4 @@
             <button type="submit">Crear</button>
         </form>
     </main>
-<?php require "parts/footer.view.php"; ?>
+<?php require "views/parts/footer.view.php"; ?>

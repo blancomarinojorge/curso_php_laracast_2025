@@ -1,14 +1,12 @@
 <?php
 
-require __DIR__."/../Database2.php";
-require __DIR__."/../Validator.php";
+require "Database2.php";
+require "Validator.php";
 
 $header = "new note";
 
-$config = require __DIR__."/../config.php";
+$config = require "config.php";
 $db = new Database2("root","rootpassword",$config["database"]);
-
-dd(Validator::email("jorge@gmail.com"));
 
 if($_SERVER["REQUEST_METHOD"]=="POST"){
     $errors=[];
@@ -28,4 +26,4 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
     ]);
 }
 
-require __DIR__."/../views/createNote.view.php";
+require "views/notes/create.view.php";
