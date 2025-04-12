@@ -5,17 +5,38 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ac708e21-fe23-4b70-8673-74843cebf116" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/www/Core/Router.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/www/controllers/notes/destroy.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/www/controllers/notes/store.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../apuntes.md" beforeDir="false" afterPath="$PROJECT_DIR$/../apuntes.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/proyecto2ConTailwind.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/proyecto2ConTailwind.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/controllers/createNote.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/controllers/notes/create.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/controllers/note.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/controllers/notes/show.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/controllers/notes.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/controllers/notes/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/routes.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/routes.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/.htaccess" beforeDir="false" afterPath="$PROJECT_DIR$/www/public/.htaccess" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/Database.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/Database2.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/Core/Database2.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/Response.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/Core/Response.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/Validator.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/Core/Validator.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/config.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/controllers/dashboard.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/controllers/dashboard.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/controllers/notes/create.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/controllers/notes/create.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/controllers/notes/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/controllers/notes/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/controllers/notes/show.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/controllers/notes/show.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/controllers/projects.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/controllers/projects.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/controllers/team.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/controllers/team.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/functions.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/functions.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/public/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/routes.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/Core/routes.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/www/routing.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/routing.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/views/createNote.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/views/notes/create.view.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/views/note.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/views/notes/show.view.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/views/notes.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/views/notes/index.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/views/errorPages/400.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/views/errorPages/400.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/views/errorPages/403.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/views/errorPages/403.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/views/errorPages/404.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/views/errorPages/404.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/views/index.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/views/index.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/views/notes/create.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/views/notes/create.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/views/notes/index.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/views/notes/index.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/views/notes/show.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/views/notes/show.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/views/projects.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/views/projects.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/views/team.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/views/team.view.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,6 +81,7 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;php.override.implement.member.chooser.php.doc&quot;: &quot;NONE&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -70,10 +92,11 @@
       <recent name="C:\Users\jorge\Documents\curso_php_laracast_2025\proyecto2ConTailwind\www\views\errorPages" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\jorge\Documents\curso_php_laracast_2025\proyecto2ConTailwind\www\Core" />
+      <recent name="C:\Users\jorge\Documents\curso_php_laracast_2025\proyecto2ConTailwind\www\public\otro" />
+      <recent name="C:\Users\jorge\Documents\curso_php_laracast_2025\proyecto2ConTailwind\www\public" />
       <recent name="C:\Users\jorge\Documents\curso_php_laracast_2025\proyecto2ConTailwind\www\views\notes" />
       <recent name="C:\Users\jorge\Documents\curso_php_laracast_2025\proyecto2ConTailwind\www\controllers\notes" />
-      <recent name="C:\Users\jorge\Documents\curso_php_laracast_2025\proyecto2ConTailwind\www\views\errorPages" />
-      <recent name="C:\Users\jorge\Documents\curso_php_laracast_2025\proyecto2ConTailwind\www" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -88,7 +111,9 @@
       <workItem from="1743850338980" duration="11483000" />
       <workItem from="1744125169570" duration="9358000" />
       <workItem from="1744212865595" duration="5217000" />
-      <workItem from="1744299250629" duration="4872000" />
+      <workItem from="1744299250629" duration="5248000" />
+      <workItem from="1744357794722" duration="24964000" />
+      <workItem from="1744470570170" duration="4102000" />
     </task>
     <servers />
   </component>

@@ -1,7 +1,6 @@
 <?php
 
-require_once "functions.php";
-require "routes.php";
+require basePath("routes.php");
 
 //para que funcione, hai que poñer o index na raiz do proyecto
 //xa que php ao poñer /dashboard por ejemplo, ao non encontrar ese archivo

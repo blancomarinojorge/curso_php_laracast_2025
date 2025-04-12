@@ -2,4 +2,6 @@
 
 $header = "Team view";
 
-require __DIR__ . "/../views/team.view.php";
+view("team.view.php",[
+    "header"=>$header
+]);

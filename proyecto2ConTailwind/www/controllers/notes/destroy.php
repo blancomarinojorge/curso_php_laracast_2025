@@ -4,24 +4,23 @@ use Core\Database2;
 use Core\Response;
 
 //dd($_SERVER);
+$header = "";
 $dbOptions = require basePath("dbConfig2.php");
 $db = new Database2("root", "rootpassword", $dbOptions["database"]);
 $userId = 2; //hardcoded
 
-$id = $_GET["id"] ?? null;
-if ($id==null){
+$noteId = $_POST["noteId"] ?? null;
+
+if ($noteId==null){
     abort(Response::BAD_REQUEST);
 }
 
-$header = "Nota ".$id;
+$note = $db->query("select * from notes where id = ?",[$noteId])->fetchOrAbort();
 
-$note = $db->query("select * from notes where id = ?",[$id])->fetchOrAbort();
-
-//check for permission
 authorize($note["user_id"]==$userId);
 
-
-view("notes/show.view.php",[
-    "header"=>$header,
-    "note"=>$note
+$db->query("delete from notes where id = :id",[
+    "id"=>$noteId
 ]);
+
+header("location: /notes");
