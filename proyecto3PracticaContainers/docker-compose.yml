@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  php_proyect3:
+    build: .
+    container_name: php_app_proyect3
+    restart: always
+    volumes:
+      - ./www:/var/www/html
+    ports:
+      - "8080:80"
+    depends_on:
+      - mysql_proyect3
+
+  mysql_proyect3:
+    image: mysql:8.0
+    container_name: mysql_db_proyect3
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: my_database
+      MYSQL_USER: my_user
+      MYSQL_PASSWORD: my_password
+    volumes:
+      - mysql_data_proyect3:/var/lib/mysql
+    ports:
+      - "3306:3306"
+
+  phpmyadmin_proyect3:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin_proyect3
+    restart: always
+    environment:
+      PMA_HOST: mysql_proyect3
+      MYSQL_ROOT_PASSWORD: rootpassword
+    ports:
+      - "8081:80"
+    depends_on:
+      - mysql_proyect3
+
+volumes:
+  mysql_data_proyect3:
+

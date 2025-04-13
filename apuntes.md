@@ -429,8 +429,96 @@ $filtrados = $filterBy($books, function ($book){
 
 </details>
 
+---
 
+# Service Containers
+Os service containers basicamente son clases de axuda para manejar a instanciación dos objectos da aplicación.
+Ademais de esto, son a base para o concepto de `dependency injection`, que basicamente instancia automaticamente
+todos os objectos que necesita un objecto no seu constructor, estupidamente util.
 
+Ejemplo basico de un Container no que se pode facer:
+* `binding`: indicar como queremos que se cree un objeto de unha clase concreta
+* `resolve`: devolve un objeto dunha clase en concreto, intentando facelo primeiro mediante o binding manual
+se o establecemos previamente, ou de non ser así intentando facer inyección de dependencias automaticamente
+* `build`: metodo para resolver todas as dependencias do constructor de unha clase
+
+````php
+<?php
+
+namespace Utils;
+
+use ReflectionClass;
+use ReflectionParameter;
+
+class Container
+{
+    private array $bindings;
+
+    /**
+     * @param array $bindings
+     */
+    public function __construct(array $bindings = [])
+    {
+        $this->bindings = $bindings;
+    }
+
+    public function bind(string $class, callable $fn){
+        $this->bindings[$class] = $fn;
+    }
+
+    public function resolve($class){
+        if (array_key_exists($class, $this->bindings)){
+            return $this->bindings[$class]();
+        }
+
+        return $this->build($class);
+    }
+
+    public function build(string $class){
+        if (!class_exists($class)){
+            throw new \Exception("Class {$class} not found");
+        }
+
+        $reflection = new ReflectionClass($class);
+
+        //get the constructor
+        $contructor = $reflection->getConstructor();
+        //if the class doesnt have a constructor we just return a new object
+        if (!$contructor){
+            return new $class;
+        }
+
+        //get the constructor params and try to create the objects for each one
+        $constructorParams = $contructor->getParameters();
+        $dependencies = array_map(function(ReflectionParameter $parameter){
+            //check if it has a default value, and if it the case, then we just use that
+            $hasDefaultValue = $parameter->isDefaultValueAvailable();
+            if ($hasDefaultValue){
+                return $parameter->getDefaultValue();
+            }
+
+            $type = $parameter->getType();
+            //if type is null or is a builtin object(string, int...) then throw an error, cause we cant make those up
+            if (!$type || $type->isBuiltin()){
+                throw new \Exception("Cannon resolve class dependency: {$parameter->getName()}");
+            }
+
+            //try to resolve the parameter
+            return $this->resolve($type->getName());
+        },$constructorParams);
+
+        //return the object
+        return $reflection->newInstanceArgs($dependencies);
+    }
+}
+````
+
+## Dependency injection
+É un metodo polo que se intenta crear un objeto automaticamente a partir dos parametros do seu constructor.
+Para esto, usanse as clases `ReflectionClass`, a cal nos permite analizar a estructura das clases e crear
+novos objetos a partir dun array de parametros.
+
+# App
 
 
 

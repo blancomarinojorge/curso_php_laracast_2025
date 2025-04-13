@@ -5,38 +5,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ac708e21-fe23-4b70-8673-74843cebf116" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/www/Core/Router.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/www/controllers/notes/destroy.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/www/controllers/notes/store.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/www/public/index2Probas.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../proyecto3PracticaContainers/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../proyecto3PracticaContainers/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../proyecto3PracticaContainers/.idea/php.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../proyecto3PracticaContainers/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../proyecto3PracticaContainers/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../proyecto3PracticaContainers/docker-compose.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../proyecto3PracticaContainers/www/Core/Asiento.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../proyecto3PracticaContainers/www/Core/Coche.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../proyecto3PracticaContainers/www/Core/Conductor.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../proyecto3PracticaContainers/www/Core/Partes.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../proyecto3PracticaContainers/www/Core/Volante.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../proyecto3PracticaContainers/www/Utils/Container.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../proyecto3PracticaContainers/www/functions.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../proyecto3PracticaContainers/www/public/.htaccess" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../proyecto3PracticaContainers/www/public/index.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../apuntes.md" beforeDir="false" afterPath="$PROJECT_DIR$/../apuntes.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/proyecto2ConTailwind.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/proyecto2ConTailwind.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/.htaccess" beforeDir="false" afterPath="$PROJECT_DIR$/www/public/.htaccess" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/Database.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/Database2.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/Core/Database2.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/Response.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/Core/Response.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/Validator.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/Core/Validator.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/config.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/controllers/dashboard.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/controllers/dashboard.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/controllers/notes/create.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/controllers/notes/create.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/Core/App.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/Core/App.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/Core/Container.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/Core/Container.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/www/controllers/notes/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/controllers/notes/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/controllers/notes/show.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/controllers/notes/show.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/controllers/projects.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/controllers/projects.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/controllers/team.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/controllers/team.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/functions.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/functions.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/public/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/routes.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/Core/routes.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/routing.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/routing.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/views/errorPages/400.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/views/errorPages/400.view.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/views/errorPages/403.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/views/errorPages/403.view.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/views/errorPages/404.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/views/errorPages/404.view.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/views/index.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/views/index.view.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/views/notes/create.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/views/notes/create.view.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/views/notes/index.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/views/notes/index.view.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/views/notes/show.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/views/notes/show.view.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/views/projects.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/views/projects.view.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/views/team.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/views/team.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/public/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/public/index.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,25 +58,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/jorge/Documents/curso_php_laracast_2025/proyecto2ConTailwind/www/controllers&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;php.override.implement.member.chooser.php.doc&quot;: &quot;NONE&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/jorge/Documents/curso_php_laracast_2025/proyecto2ConTailwind/www/public",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "php.override.implement.member.chooser.php.doc": "NONE",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\jorge\Documents\curso_php_laracast_2025\proyecto2ConTailwind\www\public" />
       <recent name="C:\Users\jorge\Documents\curso_php_laracast_2025\proyecto2ConTailwind\www\controllers" />
       <recent name="C:\Users\jorge\Documents\curso_php_laracast_2025\proyecto2ConTailwind\www\views" />
       <recent name="C:\Users\jorge\Documents\curso_php_laracast_2025\proyecto2ConTailwind\www\views\errorPages" />
@@ -113,7 +104,8 @@
       <workItem from="1744212865595" duration="5217000" />
       <workItem from="1744299250629" duration="5248000" />
       <workItem from="1744357794722" duration="24964000" />
-      <workItem from="1744470570170" duration="4102000" />
+      <workItem from="1744470570170" duration="7593000" />
+      <workItem from="1744570602134" duration="2647000" />
     </task>
     <servers />
   </component>

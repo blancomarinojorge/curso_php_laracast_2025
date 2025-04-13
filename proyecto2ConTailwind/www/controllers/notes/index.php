@@ -1,24 +1,18 @@
 <?php
 
-//require basePath("Database2.php");
-
-use Core\Database2;
+use Core\App;
 
 $header = "As tuas notas";
 
-$id = 2;
+$id = 2; //id usuario hardcoded
 
-//hardcodeoo pa facer probas
-/*
-if (isset($_GET["id"])){
-    $id = (int)$_GET["id"];
-}else{
-    abort(400);
-}*/
-
+/* Sin Containers nin App
 $dbOptions = require basePath("dbConfig2.php");
-
 $db = new Database2("root", "rootpassword", $dbOptions["database"]);
+*/
+
+//Con Containers e App
+$db = App::container()->resolve("Core\Database2");
 
 $notes = $db->query("select * from notes where user_id = ?",[$id])->fetchAll();
 
