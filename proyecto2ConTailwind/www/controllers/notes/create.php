@@ -1,7 +1,5 @@
 <?php
 
-use Core\Database2;
-
 session_start();
 
 $header = "new note";

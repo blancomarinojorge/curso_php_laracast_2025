@@ -1,12 +1,10 @@
 <?php
 
-use Core\Database2;
+use Core\App;
 use Core\Response;
+use Core\Database2;
 
-//dd($_SERVER);
-$header = "";
-$dbOptions = require basePath("dbConfig2.php");
-$db = new Database2("root", "rootpassword", $dbOptions["database"]);
+$db = App::container()->resolve(Database2::class);
 $userId = 2; //hardcoded
 
 $noteId = $_POST["noteId"] ?? null;

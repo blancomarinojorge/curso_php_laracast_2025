@@ -4,30 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ac708e21-fe23-4b70-8673-74843cebf116" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/www/public/index2Probas.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../proyecto3PracticaContainers/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../proyecto3PracticaContainers/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../proyecto3PracticaContainers/.idea/php.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../proyecto3PracticaContainers/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../proyecto3PracticaContainers/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../proyecto3PracticaContainers/docker-compose.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../proyecto3PracticaContainers/www/Core/Asiento.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../proyecto3PracticaContainers/www/Core/Coche.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../proyecto3PracticaContainers/www/Core/Conductor.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../proyecto3PracticaContainers/www/Core/Partes.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../proyecto3PracticaContainers/www/Core/Volante.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../proyecto3PracticaContainers/www/Utils/Container.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../proyecto3PracticaContainers/www/functions.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../proyecto3PracticaContainers/www/public/.htaccess" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../proyecto3PracticaContainers/www/public/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../apuntes.md" beforeDir="false" afterPath="$PROJECT_DIR$/../apuntes.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/Core/App.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/Core/App.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/Core/Container.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/Core/Container.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/controllers/notes/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/controllers/notes/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/public/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/public/index.php" afterDir="false" />
-    </list>
+    <list default="true" id="ac708e21-fe23-4b70-8673-74843cebf116" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -105,7 +82,7 @@
       <workItem from="1744299250629" duration="5248000" />
       <workItem from="1744357794722" duration="24964000" />
       <workItem from="1744470570170" duration="7593000" />
-      <workItem from="1744570602134" duration="2647000" />
+      <workItem from="1744570602134" duration="2777000" />
     </task>
     <servers />
   </component>
