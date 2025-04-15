@@ -5,13 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ac708e21-fe23-4b70-8673-74843cebf116" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/www/views/notes/edit.view.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/www/Core/Middleware/Auth.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/www/Core/Middleware/Guest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/www/Core/Middleware/MiddlewareController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/www/Core/Middleware/MiddlewareResolver.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/www/controllers/login/index.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/www/controllers/registration/create.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/www/controllers/registration/store.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/www/views/login/index.view.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/www/views/registration/create.view.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/Core/Database2.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/Core/Database2.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/Core/Router.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/Core/Router.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/Core/Validator.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/Core/Validator.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/www/Core/routes.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/Core/routes.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/controllers/notes/edit.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/controllers/notes/edit.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/controllers/notes/update.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/controllers/notes/update.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/views/notes/show.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/views/notes/show.view.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../proyecto3PracticaContainers/.idea/proyecto3PracticaContainers.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../proyecto3PracticaContainers/.idea/proyecto3PracticaContainers.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,6 +64,7 @@
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "php.override.implement.member.chooser.php.doc": "NONE",
+    "run.code.analysis.last.selected.profile": "pProject Default",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -92,7 +100,7 @@
       <workItem from="1744357794722" duration="24964000" />
       <workItem from="1744470570170" duration="7593000" />
       <workItem from="1744570602134" duration="2777000" />
-      <workItem from="1744731789938" duration="3617000" />
+      <workItem from="1744731789938" duration="13631000" />
     </task>
     <servers />
   </component>

@@ -3,7 +3,7 @@
 namespace Core;
 class Validator
 {
-    public static function checkString(string $text, int $minLenght = 1, int $maxLenght = INF)
+    public static function checkString(string $text, int $minLenght = 1, float $maxLenght = INF)
     {
         $text = trim($text);
 

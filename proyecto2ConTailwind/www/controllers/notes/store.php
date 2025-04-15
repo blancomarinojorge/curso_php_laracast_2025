@@ -3,8 +3,6 @@
 use Core\App;
 use Core\Database2;
 
-session_start();
-
 $db = App::container()->resolve(Database2::class);
 
 unset($_SESSION["errors"],$_SESSION["old"]);

@@ -1,7 +1,5 @@
 <?php
 
-session_start();
-
 $header = "new note";
 
 $errors = $_SESSION["errors"] ?? [];

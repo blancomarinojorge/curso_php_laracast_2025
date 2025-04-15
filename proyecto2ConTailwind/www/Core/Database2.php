@@ -56,4 +56,8 @@ class Database2
 
         return  $this->statement->fetchAll();
     }
+
+    public function lastInsert(){
+        return $this->pdo->lastInsertId();
+    }
 }

@@ -5,8 +5,6 @@
 use Core\App;
 use Core\Database2;
 
-session_start();
-
 /** @var Database2 $db */
 $db = App::container()->resolve(Database2::class);
 $noteId = $_GET["id"] ?? null;
