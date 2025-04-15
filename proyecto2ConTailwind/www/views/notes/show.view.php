@@ -16,6 +16,8 @@
                 <input type="hidden" name="noteId" value="<?= $note["id"] ?>">
                 <button style="color: red">Delete</button>
             </form>
+
+            <a href="/note/edit?id=<?= $note["id"] ?>">Editar</a>
         </div>
     </main>
 <?php require basePath("views/parts/footer.view.php"); ?>

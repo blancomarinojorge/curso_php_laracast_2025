@@ -4,7 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ac708e21-fe23-4b70-8673-74843cebf116" name="Changes" comment="" />
+    <list default="true" id="ac708e21-fe23-4b70-8673-74843cebf116" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/www/views/notes/edit.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/Core/routes.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/Core/routes.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/controllers/notes/edit.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/controllers/notes/edit.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/controllers/notes/update.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/controllers/notes/update.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/views/notes/show.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/views/notes/show.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../proyecto3PracticaContainers/.idea/proyecto3PracticaContainers.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../proyecto3PracticaContainers/.idea/proyecto3PracticaContainers.iml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -42,7 +50,7 @@
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/jorge/Documents/curso_php_laracast_2025/proyecto2ConTailwind/www/public",
+    "last_opened_file_path": "C:/Users/jorge/Documents/curso_php_laracast_2025/proyecto2ConTailwind/www/views/notes",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -54,6 +62,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\jorge\Documents\curso_php_laracast_2025\proyecto2ConTailwind\www\views\notes" />
       <recent name="C:\Users\jorge\Documents\curso_php_laracast_2025\proyecto2ConTailwind\www\public" />
       <recent name="C:\Users\jorge\Documents\curso_php_laracast_2025\proyecto2ConTailwind\www\controllers" />
       <recent name="C:\Users\jorge\Documents\curso_php_laracast_2025\proyecto2ConTailwind\www\views" />
@@ -83,6 +92,7 @@
       <workItem from="1744357794722" duration="24964000" />
       <workItem from="1744470570170" duration="7593000" />
       <workItem from="1744570602134" duration="2777000" />
+      <workItem from="1744731789938" duration="3617000" />
     </task>
     <servers />
   </component>
