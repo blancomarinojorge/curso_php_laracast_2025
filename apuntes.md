@@ -1,3 +1,24 @@
+## Cousas interesantes que vin e que podo profundizar
+### Escalabilidad en sessions
+
+[Link](https://www.reddit.com/r/PHP/comments/1d7fxaa/is_it_better_to_auto_start_sessions_through/?rdt=42891)
+
+How php sessions work:
+
+1. User makes request, does request has phpsess cookie?
+
+2. If so, does it have file on server named as session cookie value?
+
+3. If so, access file by session id and unserialize to session global.
+
+This is for reading - writing is same thing, but backwards.
+
+One of problems with phpsessions, that they do not scale(they do, but on very advanced setups with network storage) and block. So what you want probably is making it more robust and use something like redis for decentralization and avoid blocking(casual practice). I would say, that you should write your own session engine just to understand how it works. Eventualy ypu will know if simple session_start() is enough for you.
+
+
+### Siguiente
+---
+
 <details>
   <summary>Rutas e apache</summary>
 

@@ -5,20 +5,29 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ac708e21-fe23-4b70-8673-74843cebf116" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/www/Core/Middleware/Auth.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/www/Core/Middleware/Guest.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/www/Core/Middleware/MiddlewareController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/www/Core/Middleware/MiddlewareResolver.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/www/controllers/login/index.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/www/controllers/registration/create.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/www/controllers/registration/store.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/www/views/login/index.view.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/www/views/registration/create.view.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/www/Http/controllers/session/create.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/www/Http/controllers/session/destroy.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/www/Http/controllers/session/store.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apuntes.md" beforeDir="false" afterPath="$PROJECT_DIR$/../apuntes.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/Core/Database2.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/Core/Database2.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/Core/Router.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/Core/Router.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/Core/Validator.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/Core/Validator.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/Core/Middleware/Auth.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/Core/Middleware/Auth.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/www/Core/routes.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/Core/routes.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/controllers/dashboard.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/Http/controllers/dashboard.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/controllers/login/index.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/controllers/notes/create.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/Http/controllers/notes/create.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/controllers/notes/destroy.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/Http/controllers/notes/destroy.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/controllers/notes/edit.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/Http/controllers/notes/edit.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/controllers/notes/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/Http/controllers/notes/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/controllers/notes/show.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/Http/controllers/notes/show.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/controllers/notes/store.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/Http/controllers/notes/store.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/controllers/notes/update.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/Http/controllers/notes/update.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/controllers/projects.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/Http/controllers/projects.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/controllers/registration/create.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/Http/controllers/registration/create.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/controllers/registration/store.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/Http/controllers/registration/store.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/controllers/team.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/Http/controllers/team.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/functions.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/functions.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/views/login/index.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/views/session/index.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/views/parts/nav.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/views/parts/nav.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,24 +59,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/jorge/Documents/curso_php_laracast_2025/proyecto2ConTailwind/www/views/notes",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "php.override.implement.member.chooser.php.doc": "NONE",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/jorge/Documents/curso_php_laracast_2025/proyecto2ConTailwind/www/views/notes&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;php.override.implement.member.chooser.php.doc&quot;: &quot;NONE&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\jorge\Documents\curso_php_laracast_2025\proyecto2ConTailwind\www\views\notes" />
@@ -100,7 +109,8 @@
       <workItem from="1744357794722" duration="24964000" />
       <workItem from="1744470570170" duration="7593000" />
       <workItem from="1744570602134" duration="2777000" />
-      <workItem from="1744731789938" duration="13631000" />
+      <workItem from="1744731789938" duration="14180000" />
+      <workItem from="1744913322055" duration="6507000" />
     </task>
     <servers />
   </component>

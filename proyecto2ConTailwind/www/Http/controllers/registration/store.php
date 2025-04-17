@@ -47,11 +47,10 @@ $idNewUser = $db->lastInsert();
 
 if ($creacionCorrecta){
     $_SESSION["creationCompleted"] = "User created!";
-    $_SESSION["user"] = [
+    login([
         "id" => $db->lastInsert(),
         "email" => $email
-    ];
-    unset($_SESSION["accountCreationError"]);
+    ]);
     header("location: /");
     die();
 }else{
