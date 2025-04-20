@@ -4,6 +4,7 @@ use Core\Router;
 use Core\Container;
 use Core\Database2;
 use Core\App;
+use Core\Session;
 
 session_start();
 const BASE_PATH = __DIR__."/../";
@@ -33,3 +34,6 @@ $method = $_POST["__request_method"] ?? $_SERVER["REQUEST_METHOD"];
 $router = new Router();
 require basePath("Core/routes.php");
 $router->route($uri, $method);
+
+//delete all the flash variables
+Session::unflash();

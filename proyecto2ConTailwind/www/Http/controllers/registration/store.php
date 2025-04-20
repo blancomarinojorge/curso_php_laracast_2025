@@ -3,6 +3,8 @@
 use Core\Validator;
 use Core\App;
 use Core\Database2;
+use Core\Session;
+use Core\Authenticator;
 
 $errors = [];
 
@@ -31,11 +33,8 @@ $user = $db->query("select * from users where email = :email",[
 
 //se existe redirigese a login con unha indicacion na session
 if ($user){
-    $_SESSION["accountCreationError"] = "You already have an account";
-    header("location: /login");
-    die();
-}else{
-    unset($_SESSION["accountCreationError"]);
+    Session::flash("accountCreationError", "You already have an account");
+    redirect("/login");
 }
 
 //se non existe crease e redirigese a login indicando que se creou correctamente
@@ -46,8 +45,8 @@ $creacionCorrecta = $db->query("insert into users(email,password) values(:email,
 $idNewUser = $db->lastInsert();
 
 if ($creacionCorrecta){
-    $_SESSION["creationCompleted"] = "User created!";
-    login([
+    Session::flash("creationCompleted", "User created!");
+    Authenticator::login([
         "id" => $db->lastInsert(),
         "email" => $email
     ]);

@@ -5,29 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ac708e21-fe23-4b70-8673-74843cebf116" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/www/Http/controllers/session/create.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/www/Http/controllers/session/destroy.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/www/Http/controllers/session/store.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../apuntes.md" beforeDir="false" afterPath="$PROJECT_DIR$/../apuntes.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/www/Core/Authenticator.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/www/Core/Session.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/www/Http/Forms/LoginForm.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/Core/Middleware/Auth.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/Core/Middleware/Auth.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/Core/routes.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/Core/routes.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/controllers/dashboard.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/Http/controllers/dashboard.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/controllers/login/index.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/controllers/notes/create.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/Http/controllers/notes/create.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/controllers/notes/destroy.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/Http/controllers/notes/destroy.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/controllers/notes/edit.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/Http/controllers/notes/edit.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/controllers/notes/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/Http/controllers/notes/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/controllers/notes/show.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/Http/controllers/notes/show.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/controllers/notes/store.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/Http/controllers/notes/store.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/controllers/notes/update.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/Http/controllers/notes/update.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/controllers/projects.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/Http/controllers/projects.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/controllers/registration/create.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/Http/controllers/registration/create.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/controllers/registration/store.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/Http/controllers/registration/store.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/controllers/team.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/Http/controllers/team.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/Http/controllers/registration/store.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/Http/controllers/registration/store.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/Http/controllers/session/create.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/Http/controllers/session/create.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/Http/controllers/session/destroy.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/Http/controllers/session/destroy.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/Http/controllers/session/store.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/Http/controllers/session/store.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/www/functions.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/functions.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/views/login/index.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/views/session/index.view.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/views/parts/nav.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/views/parts/nav.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/public/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/public/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/views/session/index.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/views/session/index.view.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,11 +74,11 @@
       <recent name="C:\Users\jorge\Documents\curso_php_laracast_2025\proyecto2ConTailwind\www\views\errorPages" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\jorge\Documents\curso_php_laracast_2025\proyecto2ConTailwind\www\Http" />
       <recent name="C:\Users\jorge\Documents\curso_php_laracast_2025\proyecto2ConTailwind\www\Core" />
       <recent name="C:\Users\jorge\Documents\curso_php_laracast_2025\proyecto2ConTailwind\www\public\otro" />
       <recent name="C:\Users\jorge\Documents\curso_php_laracast_2025\proyecto2ConTailwind\www\public" />
       <recent name="C:\Users\jorge\Documents\curso_php_laracast_2025\proyecto2ConTailwind\www\views\notes" />
-      <recent name="C:\Users\jorge\Documents\curso_php_laracast_2025\proyecto2ConTailwind\www\controllers\notes" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -110,7 +98,8 @@
       <workItem from="1744470570170" duration="7593000" />
       <workItem from="1744570602134" duration="2777000" />
       <workItem from="1744731789938" duration="14180000" />
-      <workItem from="1744913322055" duration="6507000" />
+      <workItem from="1744913322055" duration="6628000" />
+      <workItem from="1745140786517" duration="9461000" />
     </task>
     <servers />
   </component>
