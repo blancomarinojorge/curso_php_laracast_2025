@@ -5,15 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ac708e21-fe23-4b70-8673-74843cebf116" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/www/Core/Authenticator.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/www/Core/Session.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/www/Http/Forms/LoginForm.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/www/Http/Forms/ValidationFormException.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/Http/controllers/registration/store.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/Http/controllers/registration/store.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/Http/controllers/session/create.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/Http/controllers/session/create.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/Http/controllers/session/destroy.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/Http/controllers/session/destroy.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/Core/Router.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/Core/Router.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/Http/Forms/LoginForm.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/Http/Forms/LoginForm.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/www/Http/controllers/session/store.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/Http/controllers/session/store.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/functions.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/functions.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/www/public/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/public/index.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/www/views/session/index.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/views/session/index.view.php" afterDir="false" />
     </list>
@@ -99,7 +95,8 @@
       <workItem from="1744570602134" duration="2777000" />
       <workItem from="1744731789938" duration="14180000" />
       <workItem from="1744913322055" duration="6628000" />
-      <workItem from="1745140786517" duration="9461000" />
+      <workItem from="1745140786517" duration="10004000" />
+      <workItem from="1745337526706" duration="6843000" />
     </task>
     <servers />
   </component>

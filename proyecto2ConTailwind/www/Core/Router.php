@@ -57,4 +57,8 @@ class Router {
     {
         return $this->addRoute($uri, $controllerPath, "PATCH");
     }
+
+    public static function redirectBack(){
+        redirect($_SERVER["HTTP_REFERER"]);
+    }
 }

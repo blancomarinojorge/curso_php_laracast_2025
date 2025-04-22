@@ -3,24 +3,27 @@
 use Http\Forms\LoginForm;
 use Core\Authenticator;
 use Core\Session;
+use \Http\Forms\ValidationFormException;
 
 $email = trim($_POST["email"] ?? "");
 $password = trim($_POST["password"] ?? "");
 
-//validate the form data
-$loginForm = new LoginForm();
-if (!$loginForm->validate($email,$password)){
-    Session::flash("loginError", $loginForm->getErrors()["loginError"] ?? null);
-    redirect("/login");
+
+$loginForm = LoginForm::validate($attributes = [
+    "email" => $email,
+    "password" => $password
+]);
+
+if (!Authenticator::attemptLogin($email, $password)){
+    $loginForm
+        ->addError("accountNotFound", "No user found for that login data")
+        ->throw();
 }
 
-if (Authenticator::attemptLogin($email, $password)){
-    redirect("/");
-}else{
-    Session::flash("loginError", "No user found for that login data");
-    Session::flash("oldLoginData", $email);
-    redirect("/login");
-}
+redirect("/");
+
+
+
 
 
 

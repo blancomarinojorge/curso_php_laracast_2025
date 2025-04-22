@@ -5,6 +5,7 @@ use Core\Container;
 use Core\Database2;
 use Core\App;
 use Core\Session;
+use Http\Forms\ValidationFormException;
 
 session_start();
 const BASE_PATH = __DIR__."/../";
@@ -33,7 +34,14 @@ $method = $_POST["__request_method"] ?? $_SERVER["REQUEST_METHOD"];
 //initiate the router and serve the petition
 $router = new Router();
 require basePath("Core/routes.php");
-$router->route($uri, $method);
+
+try{
+    $router->route($uri, $method);
+}catch (ValidationFormException $e){
+    Session::flash("old", $e->getOld());
+    Session::flash("errors", $e->getErrors());
+    Router::redirectBack();
+}
 
 //delete all the flash variables
 Session::unflash();

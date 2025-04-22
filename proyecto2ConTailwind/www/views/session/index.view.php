@@ -12,7 +12,7 @@
                     <div>
                         <label for="email" class="block text-sm/6 font-medium text-gray-900">Email address</label>
                         <div class="mt-2">
-                            <input type="email" name="email" value="<?= Session::getFlashed("oldLoginData") ?? '' ?>" id="email" autocomplete="email" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+                            <input type="text" name="email" value="<?= Session::getFlashed("old")["email"] ?? '' ?>" id="email" autocomplete="email" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
                         </div>
                     </div>
 
@@ -48,14 +48,16 @@
                             </span>
                         </div>
                     <?php endif; ?>
-                    <?php if(Session::getFlashed("loginError")): ?>
-                        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-                            <strong class="font-bold">Holy smokes!</strong>
-                            <span class="block sm:inline"><?= Session::getFlashed("loginError") ?></span>
-                            <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
-                                <svg class="fill-current h-6 w-6 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Close</title><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/></svg>
-                            </span>
-                        </div>
+                    <?php if(Session::getFlashed("errors")): ?>
+                        <?php foreach (Session::getFlashed("errors") as $error): ?>
+                            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                                <strong class="font-bold">Holy smokes!</strong>
+                                <span class="block sm:inline"><?= $error ?></span>
+                                <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
+                                    <svg class="fill-current h-6 w-6 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Close</title><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/></svg>
+                                </span>
+                            </div>
+                        <?php endforeach; ?>
                     <?php endif; ?>
                 </form>
             </div>
