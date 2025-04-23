@@ -1,0 +1,16 @@
+{
+    "name": "root/html",
+    "authors": [
+        {
+            "name": "jorge"
+        }
+    ],
+    "require": {
+        "illuminate/collections": "^12.10"
+    },
+    "autoload": {
+        "psr-4": {
+            "Core\\": "Core/"
+        }
+    }
+}
