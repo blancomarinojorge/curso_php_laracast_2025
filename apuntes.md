@@ -16,7 +16,6 @@ This is for reading - writing is same thing, but backwards.
 One of problems with phpsessions, that they do not scale(they do, but on very advanced setups with network storage) and block. So what you want probably is making it more robust and use something like redis for decentralization and avoid blocking(casual practice). I would say, that you should write your own session engine just to understand how it works. Eventualy ypu will know if simple session_start() is enough for you.
 
 
-### Siguiente
 ---
 
 <details>
@@ -452,6 +451,8 @@ $filtrados = $filterBy($books, function ($book){
 
 ---
 
+<details>
+<summary>Service containers</summary>
 # Service Containers
 Os service containers basicamente son clases de axuda para manejar a instanciación dos objectos da aplicación.
 Ademais de esto, son a base para o concepto de `dependency injection`, que basicamente instancia automaticamente
@@ -460,7 +461,7 @@ todos os objectos que necesita un objecto no seu constructor, estupidamente util
 Ejemplo basico de un Container no que se pode facer:
 * `binding`: indicar como queremos que se cree un objeto de unha clase concreta
 * `resolve`: devolve un objeto dunha clase en concreto, intentando facelo primeiro mediante o binding manual
-se o establecemos previamente, ou de non ser así intentando facer inyección de dependencias automaticamente
+  se o establecemos previamente, ou de non ser así intentando facer inyección de dependencias automaticamente
 * `build`: metodo para resolver todas as dependencias do constructor de unha clase
 
 ````php
@@ -540,24 +541,45 @@ Para esto, usanse as clases `ReflectionClass`, a cal nos permite analizar a estr
 novos objetos a partir dun array de parametros.
 
 # App
+</details>
 
+---
+# Composer
+Sirve para varias cousas, pero sobretodo autoload de clases e dependencias.
 
+## Autoload
+Unha vez descargado (con docker e chatgpt é unha chorrada) podemos configurar o
+autoload, que basicamente é o mismo que fixen manualmente no proyecto de notas
+con `spl_autoload_register` pero a maneira guay de facelo.
 
+1. No composer json, temos que definir todas as carpetas raíz do proxecto
+dentro da propiedade autoload, usanod psr-4. Solo con facer esto, todas as
+subcarpetas de cada carpeta raiz xa van funcionar tamen.
+````json
+"autoload": {
+    "psr-4": {
+        "Core\\": "Core/" //o namespace Core\ fai referencia a carpeta Core/
+    }
+}
+````
+2. Aplicar os cambios:
+````shell
+composer dump-autoload
+````
 
+## Require
+* Pagina de depencias: https://packagist.org/
 
+Para descargar dependencias usamos o comando:
+````shell
+composer require nomeDependencia
+````
 
+Por ejemplo para descargar colleccions de laravel:
+````shell
+composer require illuminate/collections
+````
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+# Tests
+Para facer tests recomendase o paquete `pestphp/pest`
 

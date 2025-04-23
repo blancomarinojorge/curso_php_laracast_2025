@@ -12,5 +12,13 @@
         "psr-4": {
             "Core\\": "Core/"
         }
+    },
+    "require-dev": {
+        "pestphp/pest": "^3.8"
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
     }
 }
