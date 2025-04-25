@@ -1,3 +1,6 @@
+## Cousas interesantes para o futuro
+* [Open swoole](https://www.youtube.com/watch?v=nGJOOS1Zd9Q&ab_channel=ThePrimeTime): fai que a aplicación sirva muitisimas peticións mais por segundo
+
 <details>
 <summary>Docker</summary>
 # Docker
