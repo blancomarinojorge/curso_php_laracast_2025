@@ -3,11 +3,22 @@
 
 <details>
 <summary>Docker</summary>
+
 # Docker
 Me cago en dios para levantar esto.
 * Esta usando php artisan serve para o servidor
   * Levantao ao levantar o docker porque llo puxen no Dockerfile
 
+## Que facer todos os dias ao arrancar
+1. Ir ao docker desktop e borrar os contenedores
+2. Arrancalos e build
+````shell
+docker compose up -d --build
+````
+
+Igual tarda un pouco en arrancar a laravel_app, pero o final vai.
+
+## Crear o proxecto de 0
 1. Crear `docker-compose.yml`, con php e laravel, mysql e phpmyadmin:
 ````yaml
 version: '3.8'
@@ -110,3 +121,119 @@ cd /var/www
 php artisan migrate
 ````
 </details>
+
+
+<details>
+<summary>Components</summary>
+
+# Components
+Son a mellor forma de reutilizar codigo nas vistas, pequenos trozos de html
+que se incluen en outras vistas, podendolle pasar datos.
+
+## Como crealos e chamalos
+Creanse en `resources/views/components` e chamanse dende outra vista facendo:
+````html
+<x-nomeFicheiroComponente ></x-x-nomeFicheiroComponente>
+````
+
+## Pasar datos
+Hai tipos de datos que lle pasamos aos componentes
+* Atributos: todos os atributos html que se queren añadir ao componente. Accedese a eles con `$attributes`
+* Slots: os elementos que van ir dentro do componente. Podese acceder:
+  * Mediante a variable `$slot`, que pilla todo o contido interior non nomeado
+  * Named slots, ponselle un nome a ese contido
+* Propiedades: sirven como os argumentos de unha función, son iguales aos atributos,
+solo que no valor podeselle poñer logica de php.
+
+#### Ejemplo:
+O componente
+````injectablephp
+@props([
+    'active' => false
+])
+
+<a
+   class="{{ $active ? "bg-gray-900 text-white" : "text-gray-300 hover:bg-gray-700 hover:text-white"}} rounded-md px-3 py-2 text-sm font-medium"
+   aria-current="{{ $active ? "true" : "false" }}"
+    {{ $attributes }}
+>
+    {{ $slot }}
+</a>
+````
+Usalo:
+````injectablephp
+<x-nav-link href="/" :active="request()->is('/')">Dashboard</x-nav-link>
+````
+</details>
+
+<details>
+<summary>Migrations</summary>
+
+# Migracions
+Son archivos para interactuar coa estructura da base de datos, tablas, columnas...
+* Ubicanse en `database/migrations`
+
+### Crear unha migración
+1. Podese crear a man pero recomendase usar o comando:
+````shell
+php artisan make:migration
+````
+2. Crearanos o archivo con duas funcions, unha para facer a migración e outra para revertila en caso de ser necesario
+   * Neste caso crea a tabla job_listing
+````php
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('job_listing', function (Blueprint $table) {
+            $table->id();
+            $table->string('name')->unique();
+            $table->float('salary');
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('job_listing');
+    }
+};
+````
+</details>
+
+### Ejecutar migracions
+Por muitas que creemos se non as ejecutamos non van facer nada, para ejecutalas:
+
+#### Todas
+````shell
+php artisan migrate
+````
+#### Unha en concreto
+````shell
+php artisan migrate --path --path=database/migrations/2024_04_25_123456_create_jobs_table.php
+````
+#### Borrar todo e facer as migracions de 0
+````shell
+php artisan migrate:fresh
+````
+#### Facer rollback de migracions
+Suponse que solo vai afectar as tablas afectadas polas últimas migracions (e borra datos)
+````shell
+php artisan migrate:rollback
+````
+Se solo queremos que afecte en concreto as tablas das `2 ultimas`:
+````shell
+php artisan migrate:rollback --step=2
+````
