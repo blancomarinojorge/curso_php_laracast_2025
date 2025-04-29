@@ -10,4 +10,12 @@ class Employee extends Model
 {
     /** @use HasFactory<EmployeeFactory> */
     use HasFactory;
+
+    protected $fillable = [
+        "name"
+    ];
+
+    public function jobs(){
+        return $this->hasMany(Job::class,'idEmployee');
+    }
 }

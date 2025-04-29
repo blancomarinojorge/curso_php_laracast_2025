@@ -1,14 +1,17 @@
 <?php
 
+use App\Models\Employee;
 use App\Models\Job;
+use App\Models\Post;
+use App\Models\Tag;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    $jobs = Job::all();
-    $job = Job::find(1);
-    Job::destroy(1);
-    dd($job);
-    //return view('home');
+    $posts = Post::with('tags')->get();
+    $posts->each(function ($post){
+        dump($post->name);
+        $post->tags->each(fn($tag) => dump($tag->name));
+    });
 });
 
 Route::get('/jobs', function (){

@@ -211,7 +211,6 @@ return new class extends Migration
     }
 };
 ````
-</details>
 
 ### Ejecutar migracions
 Por muitas que creemos se non as ejecutamos non van facer nada, para ejecutalas:
@@ -236,4 +235,56 @@ php artisan migrate:rollback
 Se solo queremos que afecte en concreto as tablas das `2 ultimas`:
 ````shell
 php artisan migrate:rollback --step=2
+```` 
+
+</details>
+
+<details>
+<summary>Factories</summary>
+
+# Factories
+EXTENDER MAIS A INVESTIGACIÓN EN ESTO
+
+Valen para crear instancias de objetos con datos falsos, moi utiles para
+test sobretodo ou facer un seed da base de datos.
+
+## Creación
+1. Crear unha factory para o modelo Post
+````shell
+php artisan make:factory PostFactory --model=Post
 ````
+2. Indicar os datos a generar:
+````php
+class PostFactory extends Factory
+{
+    /**
+     * Define the model's default state.
+     *
+     * @return array<string, mixed>
+     */
+    public function definition(): array
+    {
+        return [
+            'name' => fake()->title,
+            'content' => fake()->sentence(),
+            'user_id' => User::inRandomOrder()->first()?->id
+        ];
+    }
+}
+````
+
+## Uso
+Para por ejemplo crear na bd 50 Posts con datos falsos:
+````php
+Post::factory(50)->create();
+````
+
+</details>
+
+<details>
+<summary>Models</summary>
+
+# Models
+
+
+</details>

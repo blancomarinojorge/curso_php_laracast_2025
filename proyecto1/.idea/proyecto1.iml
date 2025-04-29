@@ -8,6 +8,8 @@
       <sourceFolder url="file://$MODULE_DIR$/laravel-app/tests" isTestSource="true" packagePrefix="Tests\" />
       <sourceFolder url="file://$MODULE_DIR$/laravel-app/tests/Feature" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/laravel-app/tests/Unit" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/spec" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/laravel-app/vendor/brick/math" />
       <excludeFolder url="file://$MODULE_DIR$/laravel-app/vendor/carbonphp/carbon-doctrine-types" />
       <excludeFolder url="file://$MODULE_DIR$/laravel-app/vendor/composer" />
@@ -119,6 +121,8 @@
       <excludeFolder url="file://$MODULE_DIR$/laravel-app/vendor/vlucas/phpdotenv" />
       <excludeFolder url="file://$MODULE_DIR$/laravel-app/vendor/voku/portable-ascii" />
       <excludeFolder url="file://$MODULE_DIR$/laravel-app/vendor/webmozart/assert" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel-app/vendor/barryvdh/laravel-debugbar" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel-app/vendor/php-debugbar/php-debugbar" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
