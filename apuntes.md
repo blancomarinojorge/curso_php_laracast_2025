@@ -285,6 +285,204 @@ Post::factory(50)->create();
 <summary>Models</summary>
 
 # Models
+Un modelo non é mais que unha clase que representa unha tabla da base
+de datos. Podense establecer relacións entre modelos e facer consultas
+sen escribir nada de sql, cousa que para facer CRUDs fai que se fagan
+nunha patada.
 
+## Creación
+Para crear o modelo podemos usar o comando de artisan, e ademais indicamos
+que tamen cree a migración e o factory correspondiente (`-mf`):
+````shell
+php artisan make:model -mf Proba
+````
+
+Exemplo de un modelo que:
+* usa o trait de HasFactory para poder usar a factoria
+* gardase na tabla `job_listing`
+* ten 2 atributos que se poden asignar masivamente ('name','salary')
+* ten unha relación `Job N:1 Employee `
+````php
+class Job extends Model
+{
+    use HasFactory;
+
+    protected $table = 'job_listing';
+    protected $fillable = [
+        'name',
+        'salary'
+    ];
+
+    public function employee(){
+        return $this->belongsTo(Employee::class,'idEmployee');
+    }
+}
+````
+
+## Tabla
+Para indicar un nombre de tabla distinto, indicase no modelo o atributo `table`.
+````php
+protected $table = 'job_listing';
+````
+
+## Atributos
+### Fillable
+Para indicar os atributos se poden asignar de forma masiva (usando `create`)
+hai que indicalos no atributo `fillable`:
+````php
+protected $fillable = [
+    'name',
+    'salary'
+];
+````
+De esta maneira, os atributos que non estean indicados en fillable non se gardarán
+ao usar create.
+Ej.:
+````php
+Job::create([
+    'name' => 'Jorge',
+    'salary' => 5000,
+    'isAdmin' => true //este valor non se vai gardar
+]);
+````
+
+## Relacions
+Para acceder aos datos dunha relación, crearemos funcions que se chamen igual
+que o modelo ao que fai referencia a fk, e que devolverán unha objeto de relación.
+
+Ao crear esta función, poderemos acceder a ela de duas maneiras:
+* Property style access(`$job->employee`): que nos vai devolver o objeto Employee da 
+relacion
+* Method access(`$job->employee()`): vainos devolver o objeto de relación, no cal podemos
+aplicar mais funcions de consulta.
+
+### belongsTo (N:1)
+Cando se usa na función de un modelo, indica que o modelo é o que ten a fk da relación.
+
+Neste caso, un job terá un employee, e a función solo devolvera un objeto Employee.
+
+````php
+public function employee(){
+    return $this->belongsTo(Employee::class,'idEmployee');
+}
+````
+* `idEmployee`: indica o nome da fk na tabla jobs (opcional, necesario se indicamos
+un nombre de columna non convencional como en este caso)
+
+### hasMany (1:N)
+O modelo que a usa NON ten a fk da relación. Vai devolver unha collection de
+objetos da clase indicada.
+
+Neste caso un Employee ten multiples Jobs (1:N).
+````php
+public function jobs(){
+    return $this->hasMany(Job::class,'idEmployee');
+}
+````
+* `idEmployee`: indica o nome da columna da tabla jobs que fai referencia a fk de
+employes
+
+### belongsToMany (N:N)
+Relación na que ambas partes teñen multiples relacións entre elas, usando unha taboa
+de relación.
+
+Migración da taboa de relación:
+````php
+Schema::create('post_tag', function (Blueprint $table) {
+    $table->id();
+    $table->foreignIdFor(\App\Models\Post::class,'postId')->constrained()
+        ->cascadeOnDelete();
+    $table->foreignIdFor(\App\Models\Tag::class,'tagId')->constrained()
+        ->cascadeOnDelete();
+    $table->timestamps();
+});
+````
+
+Exemplo do metodo dende Post:
+````php
+public function tags(){
+    return $this->belongsToMany(Tag::class, 'post_tag', 'postId', 'tagId');
+}
+````
+Todos estes parametros son necesarios solo se puxemos nomes fora do estantar
+* `post_tag`: nome da taboa de relación
+* `postId`: nome da columna da tabla de relación que fai referencia a fk do modelo
+que no que se esta definindo a función (Post en este caso)
+* `tagId`: nome da columna da tabla de relación que fai referencia a fk do modelo da
+outra parte da relación (Tag en este caso)
+
+</details>
+
+<details>
+<summary>Lazy loading vs eager</summary>
+
+# Lazy loading vs eager
+Son maneiras de cargar os datos das relacións no noso programa
+* `lazy`(defecto): carganse os datos (faise outra query) solo cando se quere acceder a relación
+* `eager`: carganse os datos tanto do modelo como das relacións indicadas todos xuntos
+
+## Lazy
+Se non se indica, as relacións cargaranse como lazy.
+````php
+$job->employee //farase unha query para coller a info da tag
+````
+## Eager
+Cargaranse os datos das relacións indicadas xunto cos modelos:
+````php
+$jobs = Job::with('employee')->get();
+foreach ($jobs as $job) {
+    echo $job->employer->name; //non fai mais queries
+}
+````
+Tamen se pode indicar de cargar a relación despois de facer a query:
+````php
+$jobs = Job::all();
+$jobs->load('employer');
+````
+E se queremos cargar as nested relations tamen podemos, por ejemplo, de cada Employee
+tamen cargar o address:
+````php
+$jobs = Job::with('employee.address')->get();
+````
+
+### Cargar todas as relacións
+Podemos cargar todas as relacións sen indicar o nome de cada unha con:
+````php
+$employees = Employee::all()->withRelationshipAutoloading();
+````
+E se nin siquiera queremos poñer eso, senon que sea o defecto da nosa aplicación
+(NON RECOMENDADO) en `AppServiceProvider`:
+````php
+public function boot(): void
+{
+    Model::automaticallyEagerLoadRelationships();
+}
+````
+
+
+## n+1 query problem
+É un problema que ocurre cando cargamos as relacións de maneira `lazy`, é dicir, que
+non van estar dispoñibles os datos ata que queremos acceder a eles, momento no que
+se fai unha query a bd para obtelos. De ahí o nome n+1, xa que facemos a query para
+obter o objeto, e unha query para cada relación.
+
+Ejemplo, por cada Employee, fai unha query para buscar os Job:
+````php
+$employees = Employee::all();
+$employees->each(function ($e){
+    $jobs = $e->jobs;
+});
+````
+
+Para que esto non pase, usaremos o loading `eager`.
+
+### Configurar para que lanze error cando se faga lazy loading
+En `AppServiceProvider`:
+````php
+public function boot(): void
+{
+    Model::preventLazyLoading();
+}
+````
 
 </details>

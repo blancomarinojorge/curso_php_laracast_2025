@@ -7,10 +7,17 @@ use App\Models\Tag;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
+    /*
     $posts = Post::with('tags')->get();
     $posts->each(function ($post){
         dump($post->name);
         $post->tags->each(fn($tag) => dump($tag->name));
+    });
+    */
+
+    $employees = Employee::all()->withRelationshipAutoloading();
+    $employees->each(function ($e){
+        $jobs = $e->jobs;
     });
 });
 
