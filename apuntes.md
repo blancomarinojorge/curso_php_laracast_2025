@@ -1,5 +1,6 @@
 ## Cousas interesantes para o futuro
 * [Open swoole](https://www.youtube.com/watch?v=nGJOOS1Zd9Q&ab_channel=ThePrimeTime): fai que a aplicación sirva muitisimas peticións mais por segundo
+* Laravel Idea: plugin para Laravel
 
 <details>
 <summary>Docker</summary>
@@ -282,6 +283,78 @@ Post::factory(50)->create();
 </details>
 
 <details>
+<summary>Seeders</summary>
+
+# Seeders
+Gardanse en `database/seeders`.
+
+Basicamente, son clases que nos sirven para poblar a base de datos. Podemos usar clases
+genericas que poblen toda a base de datos(`DatabaseSeeder.php`), ou chamar a unha personalizada
+que solo meta datos en certas tablas que nos digamos.
+
+Esto combinado cos factories, fai que poblar a base de datos sexa unha chorrada, porque chamamos
+aos factories das clases dentro do seeder e xa fan todo. Tamen podemos chamar a outros seeders.
+
+## Seeders personalizados
+Podemos crear seeders personalizados que solo metan datos en x tablas, xa sexa por manter
+o codigo mais ordenado, para un test en concreto, modelo en concreto...
+
+1. Facer a clase
+````shell
+php artisan make:seeder
+````
+2. Modificala, nesta por ejemplo chamase ao factory de Job e Employee
+````php
+class JobEmployeeSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     */
+    public function run(): void
+    {
+        Employee::factory(30)->create();
+        Job::factory(200)->create();
+    }
+}
+````
+
+4. Ahora podemos:
+* Chamala dende outros seeders, por ejemplo dende `DatabaseSeeder.php`:
+````php
+class DatabaseSeeder extends Seeder
+{
+    /**
+     * Seed the application's database.
+     */
+    public function run(): void
+    {
+        User::factory(10)->create();
+
+        $this->call(JobEmployeeSeeder::class); //chamamos ao seeder
+    }
+}
+````
+* Usala directamente para facer ese seed:
+````shell
+php artisan db:seed --class=JobEmployeeSeeder
+````
+
+## Migracións con seed
+Despois de facer unha migración, podemoslle indicar que faga o seed da base de datos.
+Ej. migración fresh que fai seed despois de crear toda a estructura
+````shell
+php artisan migrate:fresh --seed
+````
+Tamen podemos facer a migración con un seeder en concreto:
+````shell
+php artisan migrate:fresh --seed --seeder=YourCustomSeeder
+
+````
+
+
+</details>
+
+<details>
 <summary>Models</summary>
 
 # Models
@@ -345,6 +418,13 @@ Job::create([
     'isAdmin' => true //este valor non se vai gardar
 ]);
 ````
+### Guarded
+Por outro lado, guarded fai todo o contrario que fillable. Permitiran gardarse todas
+os atributos do modelo menos os indicados en guarded:
+````php
+protected $guarded = [];
+````
+Neste caso permitiran gardarse todos os atributos do modelo.
 
 ## Relacions
 Para acceder aos datos dunha relación, crearemos funcions que se chamen igual
@@ -476,7 +556,7 @@ $employees->each(function ($e){
 
 Para que esto non pase, usaremos o loading `eager`.
 
-### Configurar para que lanze error cando se faga lazy loading
+### Configurar para que lance error cando se faga lazy loading
 En `AppServiceProvider`:
 ````php
 public function boot(): void
@@ -484,5 +564,192 @@ public function boot(): void
     Model::preventLazyLoading();
 }
 ````
+
+</details>
+
+<details>
+<summary>Pagination</summary>
+
+# Pagination
+Se non queremos cargar todos os datos xuntos (recomendado) teremos que usar paginación,
+que basicamente aplica un limit con un offset a query.
+
+Ejemplo basico
+1. Aplicar paginación na consulta, neste caso de 4 en catro:
+````php
+$jobs = Job::with('employee')->paginate(4);
+````
+2. Mostrar os botons para ir a siguiente pagina na vista:
+````php
+{{ $jobs->links() }}
+````
+
+## Formas de paginación
+Hai basicamente 3 formas distintas de paginación:
+* `paginate()`: a mais costosa en terminos de eficiencia, pero indica o numero de paginas
+e podense mover entre as paginas.
+* `simplePaginate()`: mais eficiente que paginate xa que non fai un count de todos os resultados.
+Solo mostra os botons de atras e siguiente.
+* `cursorPaginate()`: a mais eficiente, xa que usa cursores e non OFFSET. Usado en grandes
+cantidades de datos que se teñen que actualizar frecuentemente.
+
+❗ Diferencia importante cursorPaginate. En vez de pasar o numero de pagina por a url (`/posts?page=7`)
+pasa un cursor(`/posts?cursor=eyJqb2JfbGlzdGluZy5pZCI6NCwiX3BvaW50c1RvTmV4dEl0ZW1zIjp0cnVlfQ`), que é o pointer en base64 ao ultimo item da pagina actual. Con esto, laravel
+sabe dende que item seguir a siguiente pagina, ainda que se añadan mais items a tabla non vai
+afectar, cousa que si pasa con paginate e simplePaginate, xa que usan offset.
+
+### Paginate
+É o mais lento, pero o mais completo en terminos de usabilidad. Mostra a cantidad de 
+resultados e permite navegar mediante o  numero de pagina.
+````php
+$jobs = Job::with('employee')->paginate(4);
+````
+### SimplePaginate
+Igual que paginate, pero mais eficiente, xa que non fai un count dos resultados.
+Permite navegar con botons de atras e adiante.
+````php
+$jobs = Job::simplePaginate(2);
+````
+
+### CursorPaginate
+A mais eficiente e robusta, perfecta para aplicacións con scroll infinito ou apis.
+Como xa expliquei arriba, usa cursor en vez de offset.
+
+⚠️Os datos da consulta deben de estar ordenador por un campo UNICO e indexado(id por ejemplo),
+xa que senon non sabería dende que item seguir na siguiente pagina.
+
+Puntos bos✔️:
+* A mais rapida
+* Robusta, a paginacion non cambia ainda que se inserten ou borren elementos da tabla.
+
+Contras❌:
+* Non se pode acceder a url facilmente, hai que pasar na resposta tanto o siguiente
+como o anterior cursor.
+
+Uso:
+````php
+$jobs = Job::cursorPaginate(2); //pagina de 2 en 2
+````
+
+#### Ejemplo de api
+Devolve a resposta xunto co anterior e siguiente cursor (null se non hai mais).
+
+Atención ao detalle de por que campos ordena, created_at e id. Non podería ordenar solo
+por o campo created_at, xa que pode haber varios registros co mismo valor. Por eso
+despois tamen ordena por o id, un campo unico e indexado.
+````php
+use App\Models\Post;
+use Illuminate\Http\Request;
+
+public function index(Request $request)
+{
+    $posts = Post::orderBy('created_at', 'desc')
+                 ->orderBy('id', 'desc')
+                 ->cursorPaginate(20);
+
+    return response()->json([
+        'data' => $posts->items(),
+        'next_cursor' => $posts->nextCursor()?->encode(), // Nullable safe operator
+        'prev_cursor' => $posts->previousCursor()?->encode(),
+    ]);
+}
+````
+Para entendelo en profundidad. Vamonos poñer no caso que estamos na pagina 3, e o ultimo
+item ten o id `123` e fui creado `2025-04-30T10:00:00`:
+
+1. Laravel creará o cursor en base64 a partir do json con estes dous datos:
+````json
+{
+  "created_at": "2025-04-30T10:00:00",
+  "id": 123
+}
+````
+2. O que nos daría un cursor:
+````php
+eyJjcmVhdGVkX2F0IjoiMjAyNS0wNC0zMFQxMDowMDowMCIsImlkIjoxMjN9
+````
+3. Con ese cursor, ao pasar a pagina 4 fará a siguiente query:
+````sql
+SELECT * FROM posts
+WHERE
+    (created_at < '2025-04-30 10:00:00')
+   OR (
+        created_at = '2025-04-30 10:00:00'
+        AND id < 123
+    )
+ORDER BY created_at DESC, id DESC
+LIMIT 21;
+````
+O where pode parecer algo raro, xa que parece que o OR fai cortocircuito en sql, pero non,
+ambas condicions son evaluadas. Ainda así, a logica é a misma, xa que se o created_at
+é menor que a fecha do cursor, a segunda condición xa non vai importar, xa que a primeira
+true, polo que a fila vaise incluir nos resultados.
+Asi que: 
+1. Comproba que a fecha sea mais antigua que a do cursor
+2. SOLO IMPORTA SE A PRIMEIRA NON SE CUMPLE. Comproba que a fecha sexa igual que a do
+cursor, pero o id sexa menor. De esta maneira se hai filas coa misma fecha, incluense
+igualmente se o id é menor.
+
+## Uso da paginación en vistas
+É moi sencillo, simplemente na vista poñemos:
+````php
+<div>{{ $jobs->links() }}</div>
+````
+
+Laravel por defecto pensará que estamos usando tailwind, asi que se o estamos facendo
+xa se vai ver ben de por si os enlaces. Se queremos modificar a forma na que se ven,
+hai que facer cambios.
+
+### Personalizar vista de paginación
+Para personalizar como se ve a paginación, non podemos facelo directamente, xa que as
+vistas de como se ve están en vendor, na carpeta de dependecias de composer, asi que
+primeiro hai que facer unha copia da vista de paginación a nosa carpeta publica e 
+despois moidicala.
+
+1. Copiar as vistas de paginación:
+````shell
+php artisan vendor:publish
+````
+![que seleccionar](imagenesApuntes/img.png)
+2. Se imos usar tailwind, podemos deixar solo `tailwind.blade.php` e borrar o resto,
+xa que se despois cambiamos por ejemplo por boostrap e non temos as vistas en resources,
+simplemente vai mirar na carpeta vendor por elas.
+3. Modificamos a vista `tailwind.blade.php` (neste caso) e xa veremos os cambios.
+4. (Opcional). Se queremos cambiar para que use por defecto a vista de boostrap5 por ejemplo,
+modificaremos `AppServiceProvider`:
+````php
+public function boot(): void
+{
+    Paginator::useBootstrapFive();
+}
+````
+</details>
+
+<details>
+<summary>Forms</summary>
+
+# Forms
+## CSRF
+CSRF (Cross Site Request Forgery) é un tipo de ataque no que unha pagina maliciosa
+fai un post dende o navegador de un usuario coa sesion iniciada na nosa pagina. 
+
+Poñamos o caso no que un usuario inicia sesion no seu banco, crease a cookie de session non?
+Ahora imaginate que entra nunha web maliciosa que fai un post para cambiar a contraseña a ese
+mismo banco, de normal non podería xa que tería que iniciar sesion, pero ao existir a cookie
+no navegador da victima a aplicación pensa que esta autenticado, e deixalle cambiar a cookie.
+
+### @csfr
+Solucionar esto en laravel é moi facil, dentro de cada formulario poremos `@csrf`:
+````php
+<form method="post" action="/jobs">
+        @csrf
+````
+
+O que fai esto é crear un campo hidden con un token unico, o cal se enviará xunto co resto de
+campos ao POST. Este token crease como atributo dentro da sesion do usuario, e se o token enviado no POST
+non coincide laravel devolve un `419`;
+
+## Validation
+
 
 </details>

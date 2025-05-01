@@ -6,11 +6,12 @@
     <ul>
         @foreach($jobs as $job)
             <li>
-                <a href="/jobs/{{ $job["id"] }}">
-                    <strong>{{ $job["name"] }}:</strong>
-                    This jobs pays {{ $job["salary"] }}$ a year
+                <a href="/jobs/{{ $job->id }}">
+                    <strong>{{ $job->name }}:</strong>
+                    This jobs pays {{ $job->salary }}$ a year
                 </a>
             </li>
         @endforeach
     </ul>
+    <div>{{ $jobs->links() }}</div>
 </x-layout>
