@@ -124,6 +124,7 @@
       <excludeFolder url="file://$MODULE_DIR$/laravel-app/vendor/barryvdh/laravel-debugbar" />
       <excludeFolder url="file://$MODULE_DIR$/laravel-app/vendor/php-debugbar/php-debugbar" />
       <excludeFolder url="file://$MODULE_DIR$/laravel-app/vendor/_laravel_idea" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel-app/vendor/laravel/sanctum" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

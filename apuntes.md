@@ -1,6 +1,8 @@
 ## Cousas interesantes para o futuro
 * [Open swoole](https://www.youtube.com/watch?v=nGJOOS1Zd9Q&ab_channel=ThePrimeTime): fai que a aplicación sirva muitisimas peticións mais por segundo
 * Laravel Idea: plugin para Laravel
+* [Como activar rutas de api en Laravel 12](https://laracasts.com/discuss/channels/laravel/routesapiphp-removed-in-laravel-12-use-web-or-restore-it)
+* laravel route model binding: xa carga o model no controlador sen ter que facer find()
 
 <details>
 <summary>Docker</summary>
@@ -490,7 +492,6 @@ Todos estes parametros son necesarios solo se puxemos nomes fora do estantar
 que no que se esta definindo a función (Post en este caso)
 * `tagId`: nome da columna da tabla de relación que fai referencia a fk do modelo da
 outra parte da relación (Tag en este caso)
-
 </details>
 
 <details>
@@ -749,7 +750,202 @@ O que fai esto é crear un campo hidden con un token unico, o cal se enviará xu
 campos ao POST. Este token crease como atributo dentro da sesion do usuario, e se o token enviado no POST
 non coincide laravel devolve un `419`;
 
-## Validation
+</details>
 
+<details>
+<summary>Validation</summary>
+
+# Validation
+En laravel é moi simple validar formularios e mostrar os errores. Usaremos o metodo validate, ao cal lle 
+pasaremos asociativo con atributo => validacions. Se a request non pasa a validación, laravel fai un redirect
+back, facendo que:
+* o old input sea flasheado na session
+* teñamos os errores disponibles en `$errors`
+
+Ejemplo de unha validación simple:
+1. No controlador, usaremos `request()->validate` para validar os campos. 
+   - Se todo valida, devolvenos un array asociativo co nome do campo e o valor do formulario.
+   - Se falla, fai redirect back flasheando a old data na session e pasando os `$errors` a vista.
+
+````php
+Route::post('/jobs',function (){
+    $validated = request()->validate([
+        'name' => ['required', 'min:3'],
+        'salary' => ['numeric']
+    ]);
+
+    Job::create($validated);
+
+    return redirect('/');
+});
+````
+2. Na vista, despois podemos usar a variable `$errors` directamente (esta sempre dispoñible) para mostrar os errores e 
+`old()` para coller os datos antiguos da session.
+````php
+<div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+    <div class="sm:col-span-4">
+        <label for="name" class="block text-sm/6 font-medium text-gray-900">Job Name</label>
+        <div class="mt-2">
+            <div class="flex items-center rounded-md bg-white pl-3 outline-1 -outline-offset-1 outline-gray-300 focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-indigo-600">
+                <input type="text" value="{{ old('name') }}" name="name" id="name" class="block min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6" placeholder="Plumber">
+            </div>
+        </div>
+        @error('name')
+            <x-error>{{ $message }}</x-error>
+        @enderror
+    </div>
+</div>
+````
+
+## FormRequest personalizados
+Podemos crear os nosos Request personalizados, os cales se lle pasarán como argumento ao controlador en vez de o Request
+normal.
+
+Con esto, a parte de moita mais reusabilida das reglas de validación, xa nin siquiera teremos que facer o validate dentro
+do controlador, laravel faino automaticamente antes de que a request chegue a el:
+````php
+Route::post('/jobs', function (StoreJobRequest $request) { //se a validacion falla non se executa o controller
+    Job::create($request->validated()); //collemos todos os parametros validados
+    return redirect('/')->with('success', 'Job created!');
+});
+````
+
+### Creación
+Para crear un novo FormRequest:
+
+1. Creamolo con artisan:
+````shell
+php artisan make:request StoreJobRequest
+````
+### Authorize
+Donde se inclue a logica que indica que o usuario ten permiso para realizar esa acción ou non. No caso de devolver
+false devolvería unha resposta con codigo:
+* `403` Forbidden: se esta logueado pero non ten permisos. Ten sentido que por defecto sempre devolva esta e non un
+401 Unauthorized(necesitas estar logueado) porque a ruta xa debería ter un middleware que checkeara que esta logueado
+antes de chegar ao controlador e ejecutar o FormRequest
+
+Se queremos, podemos cambiar o funcionamiento por defecto facendo Override de `failedAuthorization()`:
+````php
+protected function failedAuthorization()
+{
+    throw new AuthorizationException('Son un mensaje meu, tes que estar logueado!!', 401);
+}
+````
+
+### Rules
+Donde se indican as reglas de validación:
+````php
+public function rules(): array
+{
+    return [
+        'name' => ["required","string","min:3","unique:job_listing,name"],
+        "salary" => ["nullable","numeric"]
+    ];
+}
+````
+#### Validar custom objects ou arrays
+````php
+public function rules()
+{
+    return [
+        'items' => 'required|array',
+        'items.*.name' => 'required|string',
+        'items.*.price' => 'required|numeric|min:0',
+    ];
+}
+````
+
+### PrepareForValidation
+Se queremos cambiar os atributos antes de facer a validación, faremolo aquí:
+````php
+protected function prepareForValidation()
+{
+    $this->merge([
+        'salary' => str_replace(',', '', $this->salary),
+    ]);
+}
+````
+
+## Ciclo de vida das validacions
+Para entender ben as validacións, vou explicar ben o ciclo de vida, diferenciando tamen as validacións por api e por web,
+as cales devolveran un json ou un redirect back cos errores respectivamente automaticamente gracias ao Handler.
+
+1. Dentro do noso objeto request `StoreJobRequest` teremos as reglas de validación:
+````php
+class StoreJobRequest extends FormRequest
+{
+    public function rules()
+    {
+        return [
+            'name' => ['required', 'min:3'],
+            'salary' => ['nullable', 'numeric'],
+        ];
+    }
+
+    public function authorize()
+    {
+        return true;
+    }
+}
+````
+2. Se as validacions fallan, laravel chama ao metodo `failedValidation()`, o cal lanza unha `ValidationException`.
+   - podese sobreescribir o metodo failedValidation para cambiar o comportamento
+3. Esta excepcion é recollida polo `Handler.php`, o cal comproba se a request espera un json para automaticamente
+elegir se facer un redirect back ou mandar un json cos errores.
+````php
+if ($request->expectsJson()) {
+    return $this->invalidJson($request, $exception);
+} else {
+    return redirect()->back()->withErrors(...)->withInput();
+}
+````
+4. No caso de esperar un json, ejecutase o metodo `invalidJson()`:
+````php
+protected function invalidJson($request, ValidationException $exception)
+{
+    return response()->json([
+        'message' => $exception->getMessage(),
+        'errors' => $exception->errors(),
+    ], $exception->status);
+}
+````
+
+### Que nos permite este comportamento
+Que esto funcione así, permitenos usar o mismo objeto Request tanto para a api como para web, tendo solo que escribir
+as reglas de validación 1 vez, xestionando o tipo de resposta automaticamente.
+
+`web.php`:
+````php
+Route::view('/jobs/create', 'jobs.create');
+Route::post('/jobs', function (StoreJobRequest $request) {
+    Job::create($request->validated());
+    return redirect('/')->with('success', 'Job created!');
+});
+````
+`api.php`:
+````php
+Route::post('/jobs', function (StoreJobRequest $request) {
+    $job = Job::create($request->validated());
+    return response()->json(['job' => $job], 201);
+});
+````
+
+</details>
+
+<details>
+<summary>Routes</summary>
+
+# Routes
+## Route model binding
+Se non queremos estar facendo `findOrFail` continuamente nos controladores, podemos facer que se cargue o modelo
+automaticamente xa na definición da ruta.
+
+````php
+Route::get('/jobs/{job}/edit',function (Job $job){
+    return view('jobs.edit',compact('job'));
+});
+````
+
+Indicar que Laravel ejecuta antes o Model binding que o FormRequest para a validación. Guay!!
 
 </details>
