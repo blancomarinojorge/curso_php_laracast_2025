@@ -78,7 +78,7 @@ networks:
 
 2. Creamos a carpeta do proyecto laravel con:
 ````shell
-docker run --rm [rutaAbsolutaDoDirectorioCoDockerCompose][/carpetaNovaProxectoLaravel]/laravel-app:/app composer create-project laravel/laravel .
+docker run --rm -v [rutaAbsolutaDoDirectorioCoDockerCompose][/carpetaNovaProxectoLaravel]:/app composer create-project laravel/laravel .
 ````
 
 3. DockerFile
@@ -427,6 +427,65 @@ os atributos do modelo menos os indicados en guarded:
 protected $guarded = [];
 ````
 Neste caso permitiran gardarse todos os atributos do modelo.
+
+## Soft delete
+Se queremos que o modelo non se borre realmente da bd ao facer `->delete()` senon que teña un campo
+que indique a fecha na que se borrou:
+1. Use `SoftDelete` no modelo.
+````php
+class Post extends Model
+{
+    use SoftDeletes;
+````
+2. Na migración da tabla, añadir un campo `->softDeletes()`:
+````php
+Schema::table('posts', function (Blueprint $table) {
+    $table->softDeletes();
+});
+````
+
+### Como funcionará
+````php
+$post->delete(); // Sets deleted_at timestamp
+Post::all(); // Only where deleted_at IS NULL
+Post::withTrashed()->get(); //Include soft-deleted records
+Post::onlyTrashed()->get(); //Get only soft-deleted records
+$post->restore(); //Restore a soft-deleted record
+$post->forceDelete(); //Permanently delete
+$post->trashed() //know if a post is softdeleted
+````
+
+### Soft delete en relacións
+Para que nos dea unha relación que esta soft deleted, hai que indicalo con `withTrashed`:
+````php
+$user->posts()->withTrashed()->get();
+````
+
+Para facer soft deletes ou recuperar tamen das relacións `belongsToMany`:
+````php
+class User extends Model
+{
+    use SoftDeletes;
+
+    protected static function booted()
+    {
+        static::deleting(function ($user) {
+            if (! $user->isForceDeleting()) {
+                $user->posts()->delete();
+            }
+        });
+
+        static::restoring(function ($user) {
+            $user->posts()->withTrashed()->restore();
+        });
+    }
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
+}
+````
 
 ## Relacions
 Para acceder aos datos dunha relación, crearemos funcions que se chamen igual
@@ -936,6 +995,11 @@ Route::post('/jobs', function (StoreJobRequest $request) {
 <summary>Routes</summary>
 
 # Routes
+Para ver todas as rutas da aplicación, sen incluir as de vendor:
+````shell
+php artisan route:list --except-vendor
+````
+
 ## Route model binding
 Se non queremos estar facendo `findOrFail` continuamente nos controladores, podemos facer que se cargue o modelo
 automaticamente xa na definición da ruta.
@@ -947,5 +1011,169 @@ Route::get('/jobs/{job}/edit',function (Job $job){
 ````
 
 Indicar que Laravel ejecuta antes o Model binding que o FormRequest para a validación. Guay!!
+
+Se queremos que o campo polo que busque o modelo na bd non sexa o id, podemos:
+1. Indicalo no parametro da ruta:
+````php
+Route::get('/jobs/{job:name}/edit',function (Job $job){
+    return view('jobs.edit',compact('job'));
+});
+````
+2. Indicalo no propio modelo, polo que aplicará a todas as rutas:
+````php
+public function getRouteKeyName()
+{
+    return 'name';
+}
+````
+
+### Customizar o que pasa se non se encontra o resource
+Usaremos a funcion missing para indicar que facer (se non queremos o por defecto error 404)
+````php
+Route::resource('photos', PhotoController::class)
+    ->missing(function (Request $request) {
+        return Redirect::route('photos.index');
+    });
+````
+
+</details>
+
+
+<details>
+<summary>Controllers</summary>
+
+# Controllers
+Obviamente, non imos poñer toda a logica de cada ruta no arquivo de rutas, para eso creamos controladores,
+con funcions que gestionan a logica das rutas.
+
+Para crear un controlador:
+````shell
+php artisan make:controller
+````
+
+## Tipos
+Poderemos crear varios tipos:
+* **Empty**: crea un controlador vacio
+* **Resource**: con todos os metodos necesarios para CRUD
+* **Singleton**: igual que resource, pero non pasa o id do modelo a ruta.
+* **API**: o mismo que resource, pero sin o `edit` e `create`
+* **Invokable**: con un unico metodo `__invoke()`
+
+Ao final solo cambian na cantidad de metodos e nos argumentos que se lle pasan a cada un.
+
+### Empty controller
+Creanse manualmente todos os metodos e chamase o controlador como se queira, a pelo:
+````php
+class JobController extends Controller
+{
+    public function search($name)
+    {
+        // Custom logic
+    }
+}
+````
+No router:
+````php
+Route::get('/jobs/search/{name}', [JobController::class, 'search']);
+````
+
+### Resource controller
+Vai ter todos os metodos necesarios para facer CRUD:
+````php
+class ExampleController extends Controller
+{
+    public function index() {}       // GET /resource
+    public function create() {}      // GET /resource/create
+    public function store(Request $request) {} // POST /resource
+    public function show($id) {}     // GET /resource/{id}
+    public function edit($id) {}     // GET /resource/{id}/edit
+    public function update(Request $request, $id) {} // PUT/PATCH /resource/{id}
+    public function destroy($id) {}  // DELETE /resource/{id}
+}
+````
+Ahora para usalo nas rutas, simplemente faremos:
+````php
+Route::resource('examples', ExampleController::class);
+````
+Esto vai crear todas as rutas automaticamente cos nomes estandar:
+
+| Verb   | URI                      | Action           | Method      |
+| ------ | ------------------------ | ---------------- | ----------- |
+| GET    | /examples                | examples.index   | `index()`   |
+| GET    | /examples/create         | examples.create  | `create()`  |
+| POST   | /examples                | examples.store   | `store()`   |
+| GET    | /examples/{example}      | examples.show    | `show()`    |
+| GET    | /examples/{example}/edit | examples.edit    | `edit()`    |
+| PUT    | /examples/{example}      | examples.update  | `update()`  |
+| DELETE | /examples/{example}      | examples.destroy | `destroy()` |
+
+### Excluir rutas
+Se non queremos que se creen todas as rutas, podemos excluilas con:
+````php
+->only(['index']) //solo crea a ruta index
+->except(['destroy']); //non crea a ruta da funcion destroy
+````
+### API controller
+Funciona exactamente igual que ResourceController, pero sin os metodos e rutas `create` e `edit`, xa
+que a api non os necesita.
+
+Para usalo nas rutas:
+````php
+Route::apiResource('examples', ExampleApiController::class);
+````
+
+### Invokable
+Se o controlador solo vai ter un metodo, chamaraselle `__invoke()`:
+````php
+class ExampleInvokableController extends Controller
+{
+    public function __invoke(Request $request) {}
+}
+````
+
+Ahora nas rutas non lle hai que indicar o metodo a ejecutar, laravel xa ejecuta __invoke por defecto:
+````php
+Route::get('/example', ExampleInvokableController::class);
+````
+
+### Singleton
+É igual que resources, pero non pasa o id do modelo a ruta, xa que solo pode haber unha ocurrencia.
+
+Por poñer un ejemplo, un usuario ten un `perfil`, non ten sentido a ruta `perfiles/{id}`, tería que ser
+directamente `/perfil`. Despois no controlador xa se pilla o perfil a partir do usuario autenticado.
+
+Ejemplo de show:
+````php
+public function show()
+{
+    $job = Job::find(1);
+    return view('jobs.show',compact('job'));
+}
+````
+
+#### Uso en rutas
+De normal solo se crearán as rutas `show`, `edit`, `update`. Se queremos que tamen se creen as de 
+crear e borrar:
+* `->creatable()`
+* `->destroyable()`
+````php
+Route::singleton('perfil', PerfilController::class)
+    ->creatable()
+    ->destroyable();
+````
+
+Esto vai crear estas rutas:
+
+| Verb   | URI            | Action         | Controller Method |
+| ------ | -------------- | -------------- | ----------------- |
+| GET    | /perfil        | perfil.show    | `show()`          |
+| GET    | /perfil/create | perfil.create  | `create()`        |
+| POST   | /perfil        | perfil.store   | `store()`         |
+| GET    | /perfil/edit   | perfil.edit    | `edit()`          |
+| DELETE | /perfil        | perfil.destroy | `destroy()`       |
+
+---
+
+
 
 </details>
