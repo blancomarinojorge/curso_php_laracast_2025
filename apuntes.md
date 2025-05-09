@@ -5,6 +5,22 @@
 * laravel route model binding: xa carga o model no controlador sen ter que facer find()
 
 <details>
+<summary>Utilizades generales</summary>
+
+# Utilidades generales
+## Url completa da aplicación
+Se queremos unha ruta da nosa aplicación coa url completa, para por exemplo un enlace
+nun email, usaremos `url()`.
+
+````php
+url('/jobs/'.$job->id) //http://localhost:8000/jobs/204
+````
+Esto vai funcionar siempre, sustituindo localhost polo servidor no que estea a aplicacion
+correndo.
+</details>
+
+
+<details>
 <summary>Docker</summary>
 
 # Docker
@@ -1394,13 +1410,35 @@ Route::get('/jobs/{job}/edit', [JobController::class, 'edit'])->name('jobs.edit'
 <details>
 <summary>Emails</summary>
 
-# Mailable
-Para mandar mails, usaremos a clase `Mailable`
+# Envio de correos
+Para mandar un correo, usaremos a clase `Mail` (`\Iluminate\Support\Facades\Mail`)
 
+O obxeto que lle pasaremos a esta clase para ser enviado será `Mailable`, o cal representará
+o correo a enviar, con toda a info.
+
+## Configuración
+Para editar a configuración do envio de mails, faremolo en `config/mail.php`.
+
+### Configuración de credenciales
+Para configurar os datos importantes como o host, username e password de correo e asi faise no
+`.env`:
+
+````dotenv
+MAIL_MAILER=smtp
+MAIL_HOST=sandbox.smtp.mailtrap.io
+MAIL_PORT=2525
+MAIL_USERNAME=proba
+MAIL_PASSWORD=proba123
+MAIL_SCHEME=null
+MAIL_FROM_ADDRESS="info@jorgeBlanco.com"
+MAIL_FROM_NAME="Jorge Blanco"
+````
+
+## Mailable
 Normalmente, crearemos unha clase mailable para cada acción na que queremos enviar un mail, por
 ejemplo a creación de un novo Job.
 
-## Creacion
+### Creacion
 Normalmente, crearemos unha clase mailable para cada acción na que queremos enviar un mail, por
 ejemplo a creación de un novo Job.
 
@@ -1410,10 +1448,69 @@ O normal xa é crear a view relacionada con ese mailable no momento de crealo.
 ````php
 php artisan make:mail
 ````
-2. 
+2. Xa teremos a clase e a vista que vai devolver creada.
 
+Dentro da clase creada teremos varios metodos:
+- `envelope()`: usada para configurar o asunto do correo
+- `content()`: devolvese a vista asociada ao Mailer que conten o contido do correo
+- `attachments()`: arquivos adxuntados
 
+#### envelope()
+Aquí indicaremos o asunto, e tamen poderemos redefinir cousas como o from e o replyTo
+````php
+public function envelope(): Envelope
+{
+    return new Envelope(
+        subject: 'Job Posted',
+        from: 'outroCorreoDistinto@gmail.com', //non se suele cambiar
+        replyTo: 'responderAEste@gmail.com' //nin esto
+    );
+}
+````
+
+#### content()
+❗ ATENCIÓN, todas os atributos publicos do objeto Mailable van estar disponibles dentro da
+vista que usa content, asi que xa nin llos temos que pasar. Usamos with pa variables non publicas
+ou pa cousas que non temos como atributo na clase e queremos ter na vista.
+
+Aqui devolvemos a vista con todo o contido html do correo, poderemoslle pasar parametros
+coma siempre fixemos cas vistas:
+````php
+public function content(): Content
+{
+    return new Content(
+        view: 'mail.job-posted',
+        with: [
+            'job' => $this->job
+        ]
+    );
+}
+````
+
+#### attachments()
+Ficheiros adjuntos
+````php
+public function attachments()
+{
+    return [
+        Attachment::fromPath('/path/to/file.pdf'),
+    ];
+}
+````
+
+## Uso
+Para usar o mailable que creamos e mandar o correo:
+````php
+Mail::to($request->user()->email)->send(
+    new JobPosted($job)
+);
+````
+
+Indicar que nin siquiera fai falta indicar o `->email` do user, se mandamos o user
+laravel xa vai coller o seu correo.
 
 </details>
+
+
 
 

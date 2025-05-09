@@ -3,13 +3,14 @@
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\UserRegistrationController;
 use App\Http\Controllers\UserSessionController;
+use App\Mail\JobPosted;
 use Illuminate\Support\Facades\Route;
-
+use \Illuminate\Support\Facades\Mail;
 
 Route::view('/','home');
 
 Route::get('/jobs', [JobController::class, 'index'])->name('jobs.index');
-Route::get('/jobs/create', [JobController::class, 'create'])->name('jobs.create');
+Route::get('/jobs/create', [JobController::class, 'create'])->name('jobs.create')->middleware('auth');
 Route::post('/jobs', [JobController::class, 'store'])->name('jobs.store');
 Route::get('/jobs/{job}', [JobController::class, 'show'])->name('jobs.show');
 Route::get('/jobs/{job}/edit', [JobController::class, 'edit'])->name('jobs.edit')

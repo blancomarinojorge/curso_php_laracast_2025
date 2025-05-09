@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\jobs\StoreJobRequest;
+use App\Mail\JobPosted;
 use App\Models\Job;
-use App\Models\User;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Mail;
+
 
 class JobController extends Controller
 {
@@ -32,10 +32,13 @@ class JobController extends Controller
      */
     public function store(StoreJobRequest $request)
     {
-        Job::create([
+        $job = Job::create([
             ...$request->validated(),
             "idEmployee" => 1
         ]);
+        Mail::to($request->user()->email)->send(
+            new JobPosted($job)
+        );
         return redirect('/');
     }
 

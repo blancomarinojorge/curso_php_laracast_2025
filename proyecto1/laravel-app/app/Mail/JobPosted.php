@@ -18,10 +18,11 @@ class JobPosted extends Mailable
 
     /**
      * Create a new message instance.
+     * @param Job $job
      */
-    public function __construct()
+    public function __construct(Job $job)
     {
-        //
+        $this->job = $job;
     }
 
     /**
@@ -41,6 +42,9 @@ class JobPosted extends Mailable
     {
         return new Content(
             view: 'mail.job-posted',
+            with: [
+                'job' => $this->job
+            ]
         );
     }
 
