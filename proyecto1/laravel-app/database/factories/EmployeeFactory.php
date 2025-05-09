@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,6 +19,7 @@ class EmployeeFactory extends Factory
     {
         return [
             'name'=>fake()->unique()->company(),
+            'user_id'=>User::inRandomOrder()?->first()->id,
         ];
     }
 }

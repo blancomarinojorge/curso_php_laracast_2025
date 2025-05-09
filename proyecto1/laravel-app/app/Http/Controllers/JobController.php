@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\jobs\StoreJobRequest;
 use App\Models\Job;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class JobController extends Controller
 {
@@ -12,7 +15,7 @@ class JobController extends Controller
      */
     public function index()
     {
-        $jobs = Job::latest()->paginate(10);
+        $jobs = Job::paginate(10);
         return view('jobs.index',compact('jobs'));
     }
 

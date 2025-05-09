@@ -12,6 +12,13 @@ class Job extends Model
     protected $table = 'job_listing';
     protected $guarded = [];
 
+    protected function casts(): array
+    {
+        return [
+            'name' => "string"
+        ];
+    }
+
     public function employee(){
         return $this->belongsTo(Employee::class,'idEmployee');
     }

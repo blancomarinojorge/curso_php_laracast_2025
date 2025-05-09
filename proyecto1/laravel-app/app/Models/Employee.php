@@ -12,10 +12,15 @@ class Employee extends Model
     use HasFactory;
 
     protected $fillable = [
-        "name"
+        "name",
+        "user_id"
     ];
 
     public function jobs(){
         return $this->hasMany(Job::class,'idEmployee');
+    }
+
+    public function user(){
+        return $this->belongsTo(User::class);
     }
 }

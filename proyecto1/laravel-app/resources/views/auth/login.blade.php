@@ -1,7 +1,7 @@
 <x-layout>
-    <x-slot name="heading">Create new job</x-slot>
+    <x-slot name="heading">Login</x-slot>
 
-    <form method="post" action="/jobs">
+    <form method="post" action="/login">
         @csrf
         <div class="space-y-12">
             <div class="border-b border-gray-900/10 pb-12">
@@ -10,21 +10,23 @@
 
                 <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                     <x-form-field>
-                        <x-form-label for="name">Job Name</x-form-label>
+                        <x-form-label for="email">Email</x-form-label>
                         <div class="mt-2">
-                            <x-form-input value="{{ old('name') }}" name="name" id="name" placeholder="Plumber" />
+                            <div class="mt-2">
+                                <x-form-input value="{{ old('email') }}" name="email" id="email" placeholder="a@gmail.com" />
+                            </div>
                         </div>
-                        <x-form-error name="name"/>
+                        <x-form-error name="email"/>
                     </x-form-field>
 
                     <x-form-field>
-                        <x-form-label for="salary">Year Salary</x-form-label>
+                        <x-form-label for="password">Password</x-form-label>
                         <div class="mt-2">
                             <div class="mt-2">
-                                <x-form-input value="{{ old('salary') }}" name="salary" id="salary" placeholder="4000" />
+                                <x-form-input type="password" name="password" id="password" />
                             </div>
                         </div>
-                        <x-form-error name="salary"/>
+                        <x-form-error name="password"/>
                     </x-form-field>
                 </div>
             </div>

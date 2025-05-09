@@ -487,6 +487,36 @@ class User extends Model
 }
 ````
 
+## casts()
+Se queremos que o atributo sexa dunha forma no modelo pero distinta na bd indicamolo na funcion
+`casts()`.
+
+Por ejemplo temos un campo de texto que ten un json na bd, e queremos que cando estea no modelo
+sea un array:
+1. Na bd
+````json
+{"theme":"dark","notifications":true}
+````
+2. Migracion:
+````php
+Schema::table('users', function (Blueprint $table) {
+    $table->json('settings')->nullable();
+});
+````
+3. No modelo:
+````php
+protected function casts(): array
+{
+    return [
+        'settings' => 'array',
+    ];
+}
+````
+4. Ahora podemos facer:
+````php
+$theme = $user->settings['theme'];
+````
+
 ## Relacions
 Para acceder aos datos dunha relación, crearemos funcions que se chamen igual
 que o modelo ao que fai referencia a fk, e que devolverán unha objeto de relación.
@@ -1177,3 +1207,213 @@ Esto vai crear estas rutas:
 
 
 </details>
+
+<details>
+<summary>Sessions</summary>
+
+# Log in e Registration
+
+Unha maneira xa out of the box de gestionar as sesion é con laravel Breeze.
+
+## Crear usuarios e iniciar sesion
+### Crear
+````php
+public function store(StoreRegistrationRequest $request){
+    $user = User::create($request->validated());
+
+    Auth::login($user);
+
+    return redirect('/jobs');
+}
+````
+
+### Facer login
+````php
+public function store(Request $request){
+    $validated = $request->validate([
+        'email' => ['required','email'],
+        'password' => ['required']
+    ]);
+
+    //try to log in
+    $loggedIn = Auth::attempt($validated);
+        //back with errors
+        if (!$loggedIn){
+            throw ValidationException::withMessages([
+                "email" => "Those credentials do not match"
+            ]);
+        }
+
+    $request->session()->regenerate();
+
+    //redirect to dashboard
+    return redirect('/');
+}
+````
+
+## Vistas
+### Autenticado ou no
+Para renderizar unha cousa ou outra según este ou no autenticado usamos `@guest` e `@auth`:
+````php
+@guest
+    <x-nav-link href="/login" :active="request()->is('login')">Login</x-nav-link>
+    <x-nav-link href="/register" :active="request()->is('register')">Register</x-nav-link>
+@endguest()
+
+@auth
+    <form type="POST" action="/login">
+        @csrf
+        @method('DELETE')
+        <x-form-button>Logout</x-form-button>
+    </form>
+@endauth()
+````
+
+</details>
+
+<details>
+<summary>Authorization e persmisos</summary>
+
+# Authorization
+
+Hai varias maneiras de facer autorización:
+1. `Inline` authorization: dentro do controlador
+2. `Gate`: basicamente funcions definidas con un nombre en `Gate` que devolven true ou false
+3. `Middleware`: usar gate, pero a nivel de rutas, polo que xa non chega ao controlador se non a cumple
+4. 
+
+
+## Inline
+Facelo directamente no controlador, facendo as comprobacions unha por unha:
+````php
+public function edit(Job $job)
+{
+    if (Auth::guest()){
+        return redirect('/login');
+    }
+
+    if ($job->employee->user->isNot(Auth::user())){
+        abort(403);
+    }
+
+    return view('jobs.edit',compact('job'));
+}
+````
+
+## Gate
+Crea funcions nomeadas que despois se usan con varias funcions:
+* `authorize`: automaticamente fai un abort(403)
+* `allows`: devolve true se ten permiso
+* `denies`: devolve true se NON ten permiso
+* `policies`: basicamente, xuntar as Gates nunha clase para cada Modelo
+
+Indicar que o `User` será o usuario autenticado e é inyectado automaticamente por laravel. Se non esta
+autenticado xa nin siquiera ejecuta a función.
+
+````php
+Gate::define('edit-job',function (User $user, Job $job){
+    return $job->employee->user->is(Auth::user());
+});
+
+Gate::authorize('edit-job',$job);
+
+return view('jobs.edit',compact('job'));
+````
+
+Esto non é moi util xa que a gate solo esta dispoñible no controlador na que a definamos, por eso se poden
+definir no `AppServiceProvider` e estaran dispoñibles en toda a app. Para aplicacions moi pequenas esto pode
+valer pero non é nada sostenible.
+
+### Can e cannot
+Podemos comprobar se o usuario pode realizar x Gate con `can() e cannot()`:
+````php
+Auth::user()->can('edit-job',$job)
+Auth::user()->cannot('edit-job',$job)
+````
+
+Moit util en vistas, para incluir ou non cousas según permisos:
+````php
+@can('edit-job',$job)
+    <div>
+        <x-button href="/jobs/{{ $job->id }}/edit">Edit job</x-button>
+    </div>
+@endcan
+````
+
+## Middleware
+Usaremos as gates creadas a nivel de ruta
+
+### Can
+Podemos chamar a can ao estar creando a ruta, pasandolle os modelos necesarios
+````php
+Route::get('/jobs/{job}/edit', [JobController::class, 'edit'])->name('jobs.edit')
+    ->middleware('auth')
+    ->can('edit-job','job'); //aplica a Gate pasandolle o job da ruta
+````
+
+## Policy
+Para cada modelo, poderemos crear unha Policy, basicamente xuntando todas as Gates que usaremos
+para limitar o acceso a ese modelo.
+
+Creanse na carpeta `app/Policies`.
+
+Se seguimos estandares(telo en `app/Policies` e que se chame `NomeModeloPolicy`),
+Laravel automaticamente usará esa policy para ese modelo.
+
+Se queremos que siga [outra nomenclatura](https://laravel.com/docs/12.x/authorization#policy-discovery).
+
+### Creación
+1. Para crear unha policy para Job:
+````shell
+php artisan make:policy
+````
+
+2. Ejemplo da policy con unha funcion edit:
+````php
+class JobPolicy
+{
+    public function edit(User $user, Job $job): bool{
+        return $job->employee->user->is($user);
+    }
+}
+````
+
+### Uso
+Usanse como as Gates, simplemente en vez do nombre da gate usase o nome do metodo na policy.
+A clase policy a usar sabea a partir do modelo, como comentei arriba.
+
+Ejemplo:
+````php
+Route::get('/jobs/{job}/edit', [JobController::class, 'edit'])->name('jobs.edit')
+    ->middleware('auth')
+    ->can('edit','job');
+````
+
+</details>
+
+<details>
+<summary>Emails</summary>
+
+# Mailable
+Para mandar mails, usaremos a clase `Mailable`
+
+Normalmente, crearemos unha clase mailable para cada acción na que queremos enviar un mail, por
+ejemplo a creación de un novo Job.
+
+## Creacion
+Normalmente, crearemos unha clase mailable para cada acción na que queremos enviar un mail, por
+ejemplo a creación de un novo Job.
+
+O normal xa é crear a view relacionada con ese mailable no momento de crealo.
+
+1. Crear un mailable:
+````php
+php artisan make:mail
+````
+2. 
+
+
+
+</details>
+
+
