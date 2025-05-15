@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\jobs\StoreJobRequest;
+use App\Jobs\TraduceTextJob;
 use App\Mail\JobPosted;
 use App\Models\Job;
 use Illuminate\Support\Facades\Mail;
@@ -36,9 +37,12 @@ class JobController extends Controller
             ...$request->validated(),
             "idEmployee" => 1
         ]);
-        Mail::to($request->user()->email)->send(
+        Mail::to($request->user()->email)->queue(
             new JobPosted($job)
         );
+
+        TraduceTextJob::dispatch($job->name);
+
         return redirect('/');
     }
 

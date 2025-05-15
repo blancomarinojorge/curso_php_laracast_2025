@@ -1,0 +1,53 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: laravel_app_2               # Changed container name
+    ports:
+      - "8001:8000"   # Laravel port changed to avoid 8000 conflict
+      - "5174:5173"   # Vite port changed to avoid 5173 conflict
+    volumes:
+      - laravel_app_data:/var/www
+    working_dir: /var/www
+    depends_on:
+      - mysql
+    networks:
+      - laravel2
+
+  mysql:
+    image: mysql:8.0
+    container_name: laravel_mysql_2             # Changed container name
+    restart: always
+    ports:
+      - "3307:3306"     # Changed MySQL port to avoid conflict with 3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: laravel
+      MYSQL_USER: laravel
+      MYSQL_PASSWORD: secret
+    volumes:
+      - db_data_2:/var/lib/mysql                # Changed volume name
+    networks:
+      - laravel2
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: laravel_phpmyadmin_2        # Changed container name
+    restart: always
+    ports:
+      - "8081:80"      # Changed PhpMyAdmin port to avoid 8080 conflict
+    environment:
+      PMA_HOST: mysql
+      MYSQL_ROOT_PASSWORD: root
+    networks:
+      - laravel2
+
+networks:
+  laravel2:                                      # Changed network name
+
+volumes:
+  db_data_2:                                     # Changed volume name
+  laravel_app_data:

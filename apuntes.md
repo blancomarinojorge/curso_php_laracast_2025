@@ -1511,6 +1511,140 @@ laravel xa vai coller o seu correo.
 
 </details>
 
+<details>
+<summary>Queques</summary>
+
+Enlaces interesantes:
+* [queques in production](https://martinjoo.dev/laravel-queues-and-workers-in-production)
+
+# Queques
+As queques basicamente é a maneira que ten laravel e php de traballar con 'threads', xa que
+php é singlethreaded, non son threads reales, senon que gardanse as tareas
+que estan pendientes por facer en base de datos e un worker en execución vainas facendo.
+
+Para a configuración usaremos o archivo `config/queque.php`
+
+Para que os jobs se executen, laravel ten que estar ejecutando continuamente un `worker`.
+Para axudar con esto en producción usanse `supervisors`, que fan que pase o que pase 
+o worker sempre estea activo.
+
+### Ejecutar un worker
+````shell
+php artisan queue:work
+````
+
+⚠️ cada vez que fagamos un cambio en un job, teremos que reiniciar o worker, xa que este
+traballa en memoria e non pillará os cambios
+
+Ejemplo de como mandar un email metendoo na queque:
+````php
+Mail::to($request->user()->email)->queue(
+        new JobPosted($job)
+    );
+````
+
+## Dedicated job classes
+Para crear un job personalizado, usaremos:
+````shell
+php artisan make:job
+````
+
+### Metodos basicos
+Basicamente, o metodo `handle()` será o que indique que fai ese job, podemoslle pasar
+parámetros no constructor do objeto e usalos.
+
+Clase `TraduceTextJob`:
+````php
+class TraduceTextJob implements ShouldQueue
+{
+    use Queueable;
+
+    public String $texto;
+    
+    public function __construct(String $texto)
+    {
+        $this->texto = $texto;
+    }
+    
+    public function handle(): void
+    {
+        logger('Traducindo...'.$this->texto);
+    }
+}
+````
+Uso da clase:
+````php
+TraduceTextJob::dispatch($book->name);
+````
+
+</details>
+
+<details>
+<summary>Vite e dependencia frontend</summary>
+
+## Depedencias para front
+Para manexas as dependencias de front, iremonos o package.json.
+````json
+{
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "build": "vite build",
+        "dev": "vite"
+    },
+    "devDependencies": {
+        "@tailwindcss/vite": "^4.0.0",
+        "axios": "^1.8.2",
+        "concurrently": "^9.0.1",
+        "laravel-vite-plugin": "^1.2.0",
+        "tailwindcss": "^4.0.0",
+        "vite": "^6.2.4" //vite xa ven por defecto
+    }
+}
+````
+
+`scripts` usase para crear shortcuts a comandos, neste caso os de vite. Facendo
+`npm run dev` ejecutará o comando vite
+
+1. Para instalar as dependencias, necesitaremos `nodejs` e `npm`:
+````shell
+apt install nodejs npm -y
+````
+2. Ahora poderemos instalar as dependencias:
+````shell
+npm install #na raiz do proyecto
+````
+
+ir a unha version mas vella de npm: `npm i -g npm@~10.3`
+
+# Vite
+Vite é un dos bundlers mais populares, basicamente o que fan os bundlers é comprimir ao
+maximo todos os archivos de frontend no momento de subilos a `producción`. Ademais Vite
+tamen trae un liveServer con hard reloading para ver os cambios ao momento.
+
+## Configuración
+Para a configuración, usaremos `vite.config.js`.
+````js
+import { defineConfig } from 'vite';
+import laravel from 'laravel-vite-plugin';
+import tailwindcss from '@tailwindcss/vite';
+
+export default defineConfig({
+    plugins: [
+        laravel({
+            input: ['resources/css/app.css', 'resources/js/app.js'],
+            refresh: true,
+        }),
+    ],
+});
+````
+
+Explicación rapidilla:
+* `laravel`: laravel vite plugin onde lle indicamos como integrarse con laravel
+  * `input`: indica que ficheiros compilar
+  * `refresh`: habilita hot-reloading
+
+</details>
 
 
 
