@@ -10,7 +10,7 @@ services:
       - "8001:8000"   # Laravel port changed to avoid 8000 conflict
       - "5174:5173"   # Vite port changed to avoid 5173 conflict
     volumes:
-      - laravel_app_data:/var/www
+      - ./src/laravel:/var/www
     working_dir: /var/www
     depends_on:
       - mysql
@@ -50,4 +50,3 @@ networks:
 
 volumes:
   db_data_2:                                     # Changed volume name
-  laravel_app_data:
